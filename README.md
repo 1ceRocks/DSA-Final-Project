@@ -3,8 +3,6 @@
 
 Source Website: https://www.youtube.com/watch?v=IH4tog2DHt4
 
-# Stack Queues and Priority Queues
-
 Code Modification: _Fritz Cedrick V. Villariza_
 
 **Note**: Files are separated for highlighting the key points and program supplements as well as presenting the source code for comparison contained to reflect a clean and provident remote source in the repository. Such reiterations are required to test out the sample code found in the source website.
