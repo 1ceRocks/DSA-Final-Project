@@ -48,29 +48,64 @@ print("*" * 20)
 # print(itemAvailableDict)
 #prompt user to add items
 # shopping_Cart = True
+    
+def purchaseItems():
+    proceedShopping = input(" \bDo you wish to proceed? (yes / no) \n>>> ")
+    try:
+        if proceedShopping.lower() == "no":
+            sumItems()
 
-#? executes the command and returns a list of items available for the user to purchase if it wants to proceed shopping for a particular item.
-     
+        elif proceedShopping.lower() == "yes":
+            os.system('cls')     
+            main_menu()
+            browseItems()  
+            
+        else:    
+            print('Please input a correct feed into our program.')
+            purchaseItems()
+                
+    except ValueError:
+        print('Please input a correct feed into our program.')
+            
+        
 def browseItems():
     while True:
-        item_added = input("Add an item: ")
+        os.system('cls')
+        main_menu()
+        item_added = input("\n \bAdd an item: ")
         
         try:
             if item_added.title() in itemAvailableDict:
                 item_qty = int(input("Add quantity: "))
                 shoppingDict.update({item_added:{"quantity":item_qty,"subtotal":itemAvailableDict[item_added.title()]*item_qty}})
                 print(shoppingDict)
-                continueShopping = input("Do you wish to add more items? (yes / no) \n>>> ")
+                verUser = input("\n \bDo you wish to add more items? (yes / no) \n>>> ")
+                try:
+                    if verUser.lower() == "no":
+                        sumItems()
+
+                    elif verUser.lower() == "yes":
+                        os.system('cls')
+                        browseItems()  
+                        
+                    else:    
+                        print('Please input a correct feed into our program.')
+                        os.system('cls')
+                        browseItems()
+                            
+                except ValueError:
+                    print('Please input a correct feed into our program.')
             
         except ValueError:
             print("Please input a correct feed into our program.")
         
         else:
             print("Unable to add unavailable item.")
-
-#? prints out the total amount of items the user shopped from the global user variable shoppingDict{} with the summary of total prices aligned to quantity input.
+            
+purchaseItems()
 
 def sumItems():
+    os.system('cls')
     print("\n")
     print("****Bill Summary***** ")
     print("\n")
@@ -82,21 +117,3 @@ def sumItems():
     print(f" \bTotal: {shoppingDict}")
     print("***********Thank You********")
     print("Hope to see you back soon!")
-    
-def purchaseItems():
-    proceedShopping = input(" \bDo you wish to proceed? (yes / no) \n>>> ")
-    try:
-        if proceedShopping.lower() == "no":
-            sumItems()
-
-        elif proceedShopping.lower() == "yes":     
-            browseItems()  
-            
-        else:
-            print('Please input a correct feed into our program.')
-            purchaseItems()
-                
-    except ValueError:
-        print('Please input a correct feed into our program.')
-            
-purchaseItems()                  
