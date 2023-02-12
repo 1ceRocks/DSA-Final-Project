@@ -83,39 +83,31 @@ def purchaseItems():
        
         
 def browseItems():
-    if verRepeat == False: 
-        sumItems()
-    else:
-        os.system('cls')
-        main_menu()
-        item_added = input("\n \bAdd an item: ")
-        
-        try:
-            if item_added.title() in itemAvailableDict:
-                item_qty = int(input("Add quantity: "))
-                shoppingDict.update({item_added:{"quantity":item_qty,"subtotal":itemAvailableDict[item_added.title()]*item_qty}})
-                print(shoppingDict)
-                while True:
-                    verUser = input("\n \bDo you wish to add more items? (yes / no) \n>>> ")
-                    if verUser.lower() == "no":
-                        verRepeat = False
-                        break
+    os.system('cls')
+    main_menu()
+    item_added = input("\n \bAdd an item: ")
+    
+    if item_added.title() in itemAvailableDict:
+        item_qty = int(input("Add quantity: "))
+        shoppingDict.update({item_added:{"quantity":item_qty,"subtotal":itemAvailableDict[item_added.title()]*item_qty}})
+        print(shoppingDict)
+        while True:
+            verUser = input("\n \bDo you wish to add more items? (yes / no) \n>>> ")
+            if verUser.lower() == "no":
+                sumItems()
+                break
 
-                    elif verUser.lower() == "yes":
-                        os.system('cls')
-                        browseItems()  
-                        
-                    else:    
-                        os.system('cls')
-                        print('Please input a correct feed into our program.')
-                        continue
-                                
-        except ValueError:
-            print("Please input a correct feed into our program.")
-            browseItems()
-        
-        else:
-            print("Unable to add unavailable item.")
-            browseItems()
+            elif verUser.lower() == "yes":
+                os.system('cls')
+                browseItems()  
+                
+            else:    
+                os.system('cls')
+                print('Please input a correct feed into our program.')
+                continue
+
+    else:
+        print("Unable to add unavailable item.")
+        browseItems()
                   
 purchaseItems()
