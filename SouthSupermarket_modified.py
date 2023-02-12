@@ -1,6 +1,6 @@
 #  Licensed under the Apache License, Version 2.0 (the "License");
 
-import os
+import os, time
 
 #? dictionary is used to store collection of data in the format of key:value pairs that are useful for filtering values that connects two different elements (grocery items and its price). 
 itemAvailableDict = {}
@@ -11,6 +11,7 @@ shoppingDict = {}
 #welcome User
 
 #? userName is the name of the user itself. This is used to identify the user and the user can access the information.
+os.system('cls')
 userName = input("Please enter your name: ")
 
 #? variable for welcoming the user intended for greetings.
