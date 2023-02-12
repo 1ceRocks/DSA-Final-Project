@@ -47,56 +47,56 @@ main_menu()
 print("*" * 20)
 # print(itemAvailableDict)
 #prompt user to add items
-shopping_Cart = True
+# shopping_Cart = True
 
 #? executes the command and returns a list of items available for the user to purchase if it wants to proceed shopping for a particular item.
-
-def purchaseItems():
-    while shopping_Cart:
-        os.system('cls')
-        proceedShopping = input(" \bDo you wish to proceed? (yes / no) \n>>> ")
+     
+def browseItems():
+    while True:
+        item_added = input("Add an item: ")
+        
         try:
-            if proceedShopping.lower() == "no":
-                shopping_Cart = False
-                
+            if item_added.title() in itemAvailableDict:
+                item_qty = int(input("Add quantity: "))
+                shoppingDict.update({item_added:{"quantity":item_qty,"subtotal":itemAvailableDict[item_added.title()]*item_qty}})
+                print(shoppingDict)
+                continueShopping = input("Do you wish to add more items? (yes / no) \n>>> ")
+            
         except ValueError:
-            print('Please input a correct feed into our program.')
-            
+            print("Please input a correct feed into our program.")
         
-        def browseItems():
-            while True:
-                item_added = input("Add an item: ")
-            
-                if item_added.title() in itemAvailableDict:
-                    item_qty = int(input("Add quantity: "))
-                    shoppingDict.update({item_added:{"quantity":item_qty,"subtotal":itemAvailableDict[item_added.title()]*item_qty}})
-                    print(shoppingDict)
-                
-                elif item_added.isdigit() or item_added.isdecimal() or item_added.isspace():
-                    print("Please input a correct feed into our program.")
-                
-                else:
-                    print("unable to add unavailable item")
-            
-        continueShopping = input("Do you wish to add more items? (yes / no) \n>>> ")
-        
-        if 
+        else:
+            print("Unable to add unavailable item.")
 
-purchaseItems()
-continueShopping = input("Do you wish to add more items (yes/no): ")
-
-
-  
 #? prints out the total amount of items the user shopped from the global user variable shoppingDict{} with the summary of total prices aligned to quantity input.
-else:
-  print("\n")
-  print("****Bill Summary***** ")
-  print("\n")
-  print("Item    Quantity    SubTotal")
-  shopping_Sum = 0
-  for key in shoppingDict:
-    print(f"{key}    {shoppingDict[key]['quantity']}        {shoppingDict[key]['subtotal']}")
-    shopping_Sum = shoppingDict[key]['subtotal'] + shopping_Sum
+
+def sumItems():
+    print("\n")
+    print("****Bill Summary***** ")
+    print("\n")
+    print("Item    Quantity    SubTotal")
+    shopping_Sum = 0
+    for key in shoppingDict:
+        print(f"{key}    {shoppingDict[key]['quantity']}        {shoppingDict[key]['subtotal']}")
+        shopping_Sum = shoppingDict[key]['subtotal'] + shopping_Sum
     print(f" \bTotal: {shoppingDict}")
-  print("***********Thank You********")
-  print("Hope to see you back soon!")
+    print("***********Thank You********")
+    print("Hope to see you back soon!")
+    
+def purchaseItems():
+    proceedShopping = input(" \bDo you wish to proceed? (yes / no) \n>>> ")
+    try:
+        if proceedShopping.lower() == "no":
+            sumItems()
+
+        elif proceedShopping.lower() == "yes":     
+            browseItems()  
+            
+        else:
+            print('Please input a correct feed into our program.')
+            purchaseItems()
+                
+    except ValueError:
+        print('Please input a correct feed into our program.')
+            
+purchaseItems()                  
