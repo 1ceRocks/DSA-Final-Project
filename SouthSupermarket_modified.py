@@ -20,6 +20,7 @@ lenWCMsg = len(welcomeMessage)
 print("*" * lenWCMsg)
 print(welcomeMessage)
 print("*" * lenWCMsg)
+time.sleep(2)
 
 #read data from text file 
 #? access the text file and read the data and stored information 
@@ -39,7 +40,7 @@ def main_menu():
     for item in itemsAvailable:
         item_name = item.split()[0] #? split[0] to obtain string and store to its assigned local variable
         item_price = item.split()[1] #? split[1] to obtain string and store to its assigned local variable
-        print(f"{item_name}: {item_price}") #? display the item name and price attribute in the program for console purposes.
+        print(f"{item_name}: PHP {item_price}") #? display the item name and price attribute in the program for console purposes.
         
         #? this line is essential as it needs to reserve the elements accurately right in key:value order for accessing the program from the user interface input (shoppingDict).
         itemAvailableDict.update({item_name: float(item_price)})
