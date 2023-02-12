@@ -60,7 +60,15 @@ while shopping_Cart:
     
     else:
         print("unable to add unavailable item")
+        
     proceedShopping = input("Do you wish to add more items (yes/no): ")
+    
+    try:
+        if proceedShopping.lower() == "no":
+            shopping_Cart = False
+            
+    except ValueError:
+        print('Please input a correct feed into our program.')
   
 #? prints out the total amount of items the user shopped from the global user variable shoppingDict{} with the summary of total prices aligned to quantity input.
 else:
