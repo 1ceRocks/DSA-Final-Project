@@ -44,19 +44,23 @@ print("*" * 20)
 # print(itemAvailableDict)
 #prompt user to add items
 proceedShopping = input(" \bDo you wish to proceed? (yes / no) \n>>> ")
+shopping_Cart = True
 
 #? executes the command and returns a list of items available for the user to purchase if it wants to proceed shopping for a particular item.
-while proceedShopping.lower() == "yes":
-  item_added = input("Add an item: ")
+while shopping_Cart:
+    item_added = input("Add an item: ")
   
-  if item_added.title() in itemAvailableDict:
-    item_qty = int(input("Add quantity: "))
-    shoppingDict.update({item_added:{"quantity":item_qty,"subtotal":itemAvailableDict[item_added.title()]*item_qty}})
-    print(shoppingDict)
+    if item_added.title() in itemAvailableDict:
+        item_qty = int(input("Add quantity: "))
+        shoppingDict.update({item_added:{"quantity":item_qty,"subtotal":itemAvailableDict[item_added.title()]*item_qty}})
+        print(shoppingDict)
     
-  else:
-    print("unable to add unavailable item")
-  proceedShopping = input("Do you wish to add more items (yes/no): ")
+    elif item_added.isdigit() or item_added.isdecimal() or item_added.isspace():
+        print("Please input a correct feed into our program.")
+    
+    else:
+        print("unable to add unavailable item")
+    proceedShopping = input("Do you wish to add more items (yes/no): ")
   
 #? prints out the total amount of items the user shopped from the global user variable shoppingDict{} with the summary of total prices aligned to quantity input.
 else:
