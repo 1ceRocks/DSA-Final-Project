@@ -93,7 +93,6 @@ bgBlack, bgRed, bgGreen, bgYellow, bgBlue, bgMagenta, bgCyan, bgWhite = backgrou
 
 #? for loop through the list in appending the element to a dictionary (itemAvailableDict)
 def main_menu(usrChoice):
-    os.system('cls')
     progTitle = "{}".format(f"\nConsumer-Product Category\n")
     progGreet = "{}".format(f"\b1. Promos \n2. Fresh Meat and Seafoods \n3. Fresh Produce")
     def progInf():
@@ -102,11 +101,11 @@ def main_menu(usrChoice):
     
     while True:
         try:
-            usrChoice = input("\nSelect the following aisle/section you want to browse by typing any indicated characters \n\n \b>>> ")
-            if usrChoice > 4:
+            usrChoice = int(input("\nSelect the following aisle/section you want to browse by typing the indicated number (1-3) \n \b>>> "))
+            if usrChoice > 3:
                 os.system('cls')
                 print('Input not recognized or out of range.')
-                main_menu()
+                main_menu(usrChoice)
         except ValueError:
             os.system('cls')
             print('Input not recognized. Please try again.')
@@ -117,7 +116,7 @@ def main_menu(usrChoice):
     return usrChoice  
    
 def productAisle(usrChoice):
-    if (usrChoice.lower() == 'promos') or (usrChoice == "1"):   
+    if usrChoice == 1:   
         def promoSec():
             for item in promosAvail:
                 item_name = item.split()[0]
@@ -125,7 +124,7 @@ def productAisle(usrChoice):
                 print(f"{item_name}: {bold}{green}PHP {item_price}{reset}")
         promoSec()
         return usrChoice
-    elif (usrChoice.lower() == 'fresh meat and seafoods') or (usrChoice == "2"):
+    elif usrChoice == 2:
         def fMSSec():    
             for item in fMSAvail:
                 item_name = item.split()[0]
@@ -133,7 +132,7 @@ def productAisle(usrChoice):
                 print(f"{item_name}: {bold}{green}PHP {item_price}{reset}")
         fMSSec()
         return usrChoice
-    elif (usrChoice.lower() == 'fresh produce') or (usrChoice == "3"):
+    elif usrChoice == 3:
         def fPRSec():    
             for item in fPRAvail:
                 item_name = item.split()[0]
