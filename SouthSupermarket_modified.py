@@ -152,10 +152,10 @@ def sumItems():
     print("\n")
     print("****Bill Summary***** ")
     print("\n")
-    print("Item    Quantity    SubTotal")
+    print("%-30s %-30s %s" %("Item", "Quantity", "Subtotal"))
     shopping_Sum = 0
     for key in shoppingDict:
-        print(f"{key}    {shoppingDict[key]['quantity']}        {shoppingDict[key]['subtotal']}")
+        print("%-30s %-30s %s" %(key, shoppingDict[key]['quantity'], shoppingDict[key]['subtotal']))
         shopping_Sum = shoppingDict[key]['subtotal'] + shopping_Sum
     print(f" \bTotal: {shopping_Sum}")
     print("***********Thank You********")
