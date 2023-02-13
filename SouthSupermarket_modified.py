@@ -216,11 +216,11 @@ def browseItems(usrChoice):
                 continue
             
     elif item_added.title() == ("Q" or "Quit"):
-        main_menu(usrChoice)
+        browseItems(main_menu(usrChoice)) 
                
     else:
         print("Unable to add unavailable item.")
         browseItems(usrChoice)
                   
-usrChoice = 0        
-browseItems(main_menu(usrChoice))
+usrChoice = 0    
+browseItems(main_menu(usrChoice)) 
