@@ -93,6 +93,7 @@ bgBlack, bgRed, bgGreen, bgYellow, bgBlue, bgMagenta, bgCyan, bgWhite = backgrou
 
 #? for loop through the list in appending the element to a dictionary (itemAvailableDict)
 def main_menu(usrChoice):
+    os.system('cls')
     progTitle = "{}".format(f"\nConsumer-Product Category\n")
     progGreet = "{}".format(f"\b1. Promos \n2. Fresh Meat and Seafoods \n3. Fresh Produce")
     def progInf():
@@ -180,7 +181,10 @@ def sumItems():
        
         
 def browseItems(usrChoice):
-    
+    progExit = "{}".format(f"Type and enter the Q key to exit the Product Category Aisle anytime.")
+    def verUser():
+        print("\n" + progExit)
+    verUser()
     item_added = input("\n \bAdd an item: ")
     
     if item_added.title() in itemAvailableDict:
@@ -210,7 +214,10 @@ def browseItems(usrChoice):
                 productAisle(usrChoice)
                 print('Please input a correct feed on the program.')
                 continue
-
+            
+    elif item_added.title() == ("Q" or "Quit"):
+        main_menu(usrChoice)
+               
     else:
         print("Unable to add unavailable item.")
         browseItems(usrChoice)
