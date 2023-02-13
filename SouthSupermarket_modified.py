@@ -149,9 +149,7 @@ print("*" * 20)
 
 def sumItems():
     os.system('cls')
-    print("\n")
-    print("****Bill Summary***** ")
-    print("\n")
+    print(f"{bold}{red}{bgWhite}TRANSACTION MANAGEMENT{reset}")
     print("%-30s %-30s %s" %("Item", "Quantity", "Subtotal"))
     shopping_Sum = 0
     for key in shoppingDict:
@@ -193,9 +191,10 @@ def browseItems(usrChoice):
         def consumerCart():
             os.system('cls')
             productAisle(usrChoice)
-            print(f"\n \b{bold}{yellow}Your Cart{reset}")
+            progIndicator = "{}".format("%-25s %-25s %s" %("Item", "Quantity", "Subtotal"))
+            print(f"\n \b{bold}{yellow}Your Cart{reset}\n\n \b{progIndicator}")
             for key in shoppingDict:
-                print(f"{blue}{key} {green}Quantity:{reset} {shoppingDict[key]['quantity']}")
+                print(f"{blue}{key} {green}{shoppingDict[key]['quantity']} {red}{shoppingDict[key]['subtotal']}{reset}")
         consumerCart()
         while True:
             verUser = input("\n \bDo you wish to add more items? (yes / no) \n>>> ")
