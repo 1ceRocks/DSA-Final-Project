@@ -23,18 +23,36 @@ print(welcomeMessage)
 print("\n" + "*" * lenWCMsg)
 time.sleep(2)
 
-#read data from text file 
-#? access the text file and read the data and stored information 
-my_file = open("available_grocery_items.txt")
-file_line = my_file.readline()
+promos = open("grocerySection/promos.txt")
+freshMeatSeafoods = open("grocerySection/freshMeatSeafoods.txt")
+freshProduce = open("grocerySection/freshProduce.txt")
+promosAvail = promos.readlines()
+fMSAvail = freshMeatSeafoods.readlines()
+fPRAvail = freshProduce.readlines()
+promos.close() 
+freshMeatSeafoods.close()
+freshProduce.close()
 
-#? readlines() method is used to read the entire contents of the text file.
-itemsAvailable = my_file.readlines()
-# print(itemsAvailable)
-my_file.close()
+itemsAvailable = promosAvail
+itemsAvailable2 = fMSAvail
+itemsAvailable3 = fPRAvail
 
-#fetch items from list and add to a dictionary
-print("***********Items Available in Our Store****************")
+def produceItems():
+    for item in itemsAvailable:
+        item_name = item.split()[0]
+        item_price = item.split()[1] 
+        itemAvailableDict.update({item_name: float(item_price)})
+        
+    for item in itemsAvailable2:
+        item_name = item.split()[0]
+        item_price = item.split()[1] 
+        itemAvailableDict.update({item_name: float(item_price)})
+        
+    for item in itemsAvailable3:
+        item_name = item.split()[0]
+        item_price = item.split()[1] 
+        itemAvailableDict.update({item_name: float(item_price)})
+produceItems()
 
 #* PYTHON COLOR CLASS
 def textFormat(r, b, f, i, u):
@@ -71,19 +89,58 @@ reset, bold, faint, italic, underlined = textFormat(1, 2, 3, 4, 5)
     
 black, red, green, yellow, blue, magenta, cyan, white = foregroundColors(1, 2, 3, 4, 5, 6, 7, 8)
 
-bgBlack, bgRed, bgGreen, bgYellow, bgBlue, bgMagenta, bgCyan, bgWhite = backgroundColors(1, 2, 3, 4, 5, 6, 7, 8) 
+bgBlack, bgRed, bgGreen, bgYellow, bgBlue, bgMagenta, bgCyan, bgWhite = backgroundColors(1, 2, 3, 4, 5, 6, 7, 8)
 
 #? for loop through the list in appending the element to a dictionary (itemAvailableDict)
-def main_menu():
-    for item in itemsAvailable:
-        item_name = item.split()[0] #? split[0] to obtain string and store to its assigned local variable
-        item_price = item.split()[1] #? split[1] to obtain string and store to its assigned local variable
-        print(f"{item_name}: {bold}{green}PHP {item_price}{reset}") #? display the item name and price attribute in the program for console purposes.
-        
-        #? this line is essential as it needs to reserve the elements accurately right in key:value order for accessing the program from the user interface input (shoppingDict).
-        itemAvailableDict.update({item_name: float(item_price)})
+def main_menu(usrChoice):
+    progTitle = "{}".format(f"\nConsumer-Product Category\n")
+    progGreet = "{}".format(f"\b1. Promos \n2. Fresh Meat and Seafoods \n3. Fresh Produce")
+    def progInf():
+        print(progTitle, progGreet.ljust(10))
+    progInf()
+    
+    while True:
+        try:
+            usrChoice = int(input("\nSelect the following aisle/section you want to browse by typing the indicated number (1-3) \n \b>>> "))
+            if usrChoice > 4:
+                os.system('cls')
+                print('Input not recognized or out of range.')
+                main_menu()
+        except ValueError:
+            os.system('cls')
+            print('Input not recognized. Please try again.')
+            main_menu(usrChoice)
+        finally:
+            productAisle(usrChoice)
+            break
+    return usrChoice  
    
-main_menu()
+def productAisle(usrChoice):
+    if usrChoice == 1:   
+        def promoSec():
+            for item in promosAvail:
+                item_name = item.split()[0]
+                item_price = item.split()[1] 
+                print(f"{item_name}: {bold}{green}PHP {item_price}{reset}")
+        promoSec()
+        return usrChoice
+    elif usrChoice == 2:
+        def fMSSec():    
+            for item in fMSAvail:
+                item_name = item.split()[0]
+                item_price = item.split()[1] 
+                print(f"{item_name}: {bold}{green}PHP {item_price}{reset}")
+        fMSSec()
+        return usrChoice
+    elif usrChoice == 3:
+        def fPRSec():    
+            for item in fPRAvail:
+                item_name = item.split()[0]
+                item_price = item.split()[1] 
+                print(f"{item_name}: {bold}{green}PHP {item_price}{reset}")
+        fPRSec()
+        return usrChoice
+
 print("*" * 20)
 # print(itemAvailableDict)
 #prompt user to add items
@@ -103,34 +160,38 @@ def sumItems():
     print("***********Thank You********")
     print("Hope to see you back soon!")
     
-def purchaseItems():
+def purchaseItems(usrChoice):
     proceedShopping = input(" \bDo you wish to proceed? (yes / no) \n>>> ")
     try:
         if proceedShopping.lower() == "no":
             sumItems()
 
         elif proceedShopping.lower() == "yes":
-            os.system('cls')     
-            main_menu()
-            browseItems()  
+            os.system('cls')
+            productAisle(usrChoice)     
+            browseItems(usrChoice)  
             
         else:    
             print('Please input a correct feed into our program.')
-            purchaseItems()
+            purchaseItems(usrChoice)
                 
     except ValueError:
         print('Please input a correct feed into our program.')       
        
         
-def browseItems():
-    os.system('cls')
-    main_menu()
+def browseItems(usrChoice):
     item_added = input("\n \bAdd an item: ")
     
     if item_added.title() in itemAvailableDict:
         item_qty = int(input("Add quantity: "))
         shoppingDict.update({item_added:{"quantity":item_qty,"subtotal":itemAvailableDict[item_added.title()]*item_qty}})
-        print(shoppingDict)
+        def consumerCart():
+            os.system('cls')
+            productAisle(usrChoice)
+            print(f"\n \b{bold}{yellow}Your Cart{reset}")
+            for key in shoppingDict:
+                print(f"{blue}{key} {green}Quantity:{reset} {shoppingDict[key]['quantity']}")
+        consumerCart()
         while True:
             verUser = input("\n \bDo you wish to add more items? (yes / no) \n>>> ")
             if verUser.lower() == "no":
@@ -139,15 +200,19 @@ def browseItems():
 
             elif verUser.lower() == "yes":
                 os.system('cls')
-                browseItems()  
+                productAisle(usrChoice)
+                consumerCart()
+                browseItems(usrChoice)  
                 
             else:    
                 os.system('cls')
-                print('Please input a correct feed into our program.')
+                productAisle(usrChoice)
+                print('Please input a correct feed on the program.')
                 continue
 
     else:
         print("Unable to add unavailable item.")
-        browseItems()
+        browseItems(usrChoice)
                   
-purchaseItems()
+usrChoice = 0        
+purchaseItems(main_menu(usrChoice))
