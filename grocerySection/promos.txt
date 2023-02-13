@@ -1,4 +1,3 @@
-Item UnitPrice
 Pancit-Canton 13.50
 Knorr-Sinigang 14.50
 Master-Gulaman-Gelatin 15

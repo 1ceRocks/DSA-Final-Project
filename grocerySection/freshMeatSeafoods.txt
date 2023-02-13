@@ -1,0 +1,14 @@
+Chicken-Skin 27
+Chicken-Neck 31.20
+Chicken-Gizzard 37.20
+Chicken-Liver 55.20
+Tilapia-Large 73.15
+Chicken-Wings 96.80
+Chicken-Thighs 96.80
+Chicken-Drumstick 96.80
+Pork-Sinigang-Cut 97.50
+Chicken-Recado-Cut 114.95
+Pink-Salmon-Head 133.50
+Chicken-Breast 139.15
+Pork-Chop 141.50
+Caldereta-Cut 143.50
