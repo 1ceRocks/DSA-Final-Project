@@ -102,7 +102,7 @@ def main_menu(usrChoice):
     
     while True:
         try:
-            usrChoice = int(input("\nSelect the following aisle/section you want to browse by typing the indicated number (1-3) \n \b>>> "))
+            usrChoice = input("\nSelect the following aisle/section you want to browse by typing any indicated characters \n\n \b>>> ")
             if usrChoice > 4:
                 os.system('cls')
                 print('Input not recognized or out of range.')
@@ -117,7 +117,7 @@ def main_menu(usrChoice):
     return usrChoice  
    
 def productAisle(usrChoice):
-    if usrChoice == 1:   
+    if (usrChoice.lower() == 'promos') or (usrChoice == "1"):   
         def promoSec():
             for item in promosAvail:
                 item_name = item.split()[0]
@@ -125,7 +125,7 @@ def productAisle(usrChoice):
                 print(f"{item_name}: {bold}{green}PHP {item_price}{reset}")
         promoSec()
         return usrChoice
-    elif usrChoice == 2:
+    elif (usrChoice.lower() == 'fresh meat and seafoods') or (usrChoice == "2"):
         def fMSSec():    
             for item in fMSAvail:
                 item_name = item.split()[0]
@@ -133,7 +133,7 @@ def productAisle(usrChoice):
                 print(f"{item_name}: {bold}{green}PHP {item_price}{reset}")
         fMSSec()
         return usrChoice
-    elif usrChoice == 3:
+    elif (usrChoice.lower() == 'fresh produce') or (usrChoice == "3"):
         def fPRSec():    
             for item in fPRAvail:
                 item_name = item.split()[0]
@@ -150,6 +150,11 @@ print("*" * 20)
 def sumItems():
     os.system('cls')
     print(f"{bold}{red}{bgWhite}TRANSACTION MANAGEMENT{reset}")
+    gap = ' '*3
+    heading = f"{'Product':20s}{gap}{'Quantity':6s}{gap}{'Subtotal (PHP)'}"
+    print("="*53)
+    print(heading)
+    print("-"*53)
     print("%-30s %-30s %s" %("Product", "Quantity", "Subtotal"))
     shopping_Sum = 0
     for key in shoppingDict:
@@ -194,7 +199,7 @@ def browseItems(usrChoice):
             progIndicator = "{}".format("%-35s %-35s %s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
             print(f"\n \b{bold}{yellow}Your Cart{reset}\n\n \b{progIndicator}")
             for key in shoppingDict:
-                print("%-35s %-35d %s" %(f"{blue}{key}", f"{green}{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}"))
+                print("%-35s %-32s %s" %(f"{blue}{key}", f"{green}{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}"))
         consumerCart()
         while True:
             verUser = input("\n \bDo you wish to add more items? (yes / no) \n>>> ")
