@@ -37,13 +37,22 @@ my_file.close()
 print("***********Items Available in Our Store****************")
 
 #* PYTHON COLOR CLASS
-def pyColors(bk, rd, gr, yl, bl, ma, cy ,wh):
+def textFormat(r, b, f, i, u):
+    r = '\033[0m'
+    b = '\033[0m'
+    f = '\033[0m'
+    i = '\033[0m'
+    u = '\033[0m'
+    return r, b, f, i, u
+    
+def foregroundColors(bk, rd, gr, yl, bl, ma, cy ,wh):
     bk = '\033[30m'
     gr = '\033[32m'
     return bk, rd, gr, yl, bl, ma, cy, wh
+
+reset, bold, faint, italic, underlined = textFormat(1, 2, 3, 4, 5)
     
-black, red, green, yellow, blue, magenta, cyan, white = pyColors(1, 2, 3, 4, 5, 6, 7, 8)
-RED = '\033[31m]'
+black, red, green, yellow, blue, magenta, cyan, white = foregroundColors(1, 2, 3, 4, 5, 6, 7, 8)
 
 #? for loop through the list in appending the element to a dictionary (itemAvailableDict)
 def main_menu():
