@@ -39,27 +39,46 @@ print("***********Items Available in Our Store****************")
 #* PYTHON COLOR CLASS
 def textFormat(r, b, f, i, u):
     r = '\033[0m'
-    b = '\033[0m'
-    f = '\033[0m'
-    i = '\033[0m'
-    u = '\033[0m'
+    b = '\033[1m'
+    f = '\033[2m'
+    i = '\033[3m'
+    u = '\033[4m'
     return r, b, f, i, u
     
 def foregroundColors(bk, rd, gr, yl, bl, ma, cy ,wh):
     bk = '\033[30m'
+    rd = '\033[31m'
     gr = '\033[32m'
+    yl = '\033[33m'
+    bl = '\033[34m'
+    ma = '\033[35m'
+    cy = '\033[36m'
+    wh = '\033[37m'
     return bk, rd, gr, yl, bl, ma, cy, wh
+
+def backgroundColors(bgBk, bgRd, bgGr, bgYl, bgBl, bgMa, bgCy, bgWh):
+    bgBk = '\033[40m'
+    bgRd = '\033[41m'
+    bgGr = '\033[42m'
+    bgYl = '\033[43m'
+    bgBl = '\033[44m'
+    bgMa = '\033[45m'
+    bgCy = '\033[46m'
+    bgWh = '\033[47m'
+    return bgBk, bgRd, bgGr, bgYl, bgBl, bgMa, bgCy, bgWh
 
 reset, bold, faint, italic, underlined = textFormat(1, 2, 3, 4, 5)
     
 black, red, green, yellow, blue, magenta, cyan, white = foregroundColors(1, 2, 3, 4, 5, 6, 7, 8)
+
+bgBlack, bgRed, bgGreen, bgYellow, bgBlue, bgMagenta, bgCyan, bgWhite = backgroundColors(1, 2, 3, 4, 5, 6, 7, 8) 
 
 #? for loop through the list in appending the element to a dictionary (itemAvailableDict)
 def main_menu():
     for item in itemsAvailable:
         item_name = item.split()[0] #? split[0] to obtain string and store to its assigned local variable
         item_price = item.split()[1] #? split[1] to obtain string and store to its assigned local variable
-        print(f"{item_name}: {green}PHP {item_price}\033[0m") #? display the item name and price attribute in the program for console purposes.
+        print(f"{item_name}: {bold}{green}PHP {item_price}{reset}") #? display the item name and price attribute in the program for console purposes.
         
         #? this line is essential as it needs to reserve the elements accurately right in key:value order for accessing the program from the user interface input (shoppingDict).
         itemAvailableDict.update({item_name: float(item_price)})
