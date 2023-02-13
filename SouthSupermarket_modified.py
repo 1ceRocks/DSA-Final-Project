@@ -160,26 +160,27 @@ def sumItems():
     print("***********Thank You********")
     print("Hope to see you back soon!")
     
-def purchaseItems(usrChoice):
-    proceedShopping = input(" \bDo you wish to proceed? (yes / no) \n>>> ")
-    try:
-        if proceedShopping.lower() == "no":
-            sumItems()
+# def purchaseItems(usrChoice):
+#     proceedShopping = input(" \bDo you wish to proceed? (yes / no) \n>>> ")
+#     try:
+#         if proceedShopping.lower() == "no":
+#             sumItems()
 
-        elif proceedShopping.lower() == "yes":
-            os.system('cls')
-            productAisle(usrChoice)     
-            browseItems(usrChoice)  
+#         elif proceedShopping.lower() == "yes":
+#             os.system('cls')
+#             productAisle(usrChoice)     
+#             browseItems(usrChoice)  
             
-        else:    
-            print('Please input a correct feed into our program.')
-            purchaseItems(usrChoice)
+#         else:    
+#             print('Please input a correct feed into our program.')
+#             purchaseItems(usrChoice)
                 
-    except ValueError:
-        print('Please input a correct feed into our program.')       
+#     except ValueError:
+#         print('Please input a correct feed into our program.')       
        
         
 def browseItems(usrChoice):
+    
     item_added = input("\n \bAdd an item: ")
     
     if item_added.title() in itemAvailableDict:
@@ -215,4 +216,4 @@ def browseItems(usrChoice):
         browseItems(usrChoice)
                   
 usrChoice = 0        
-purchaseItems(main_menu(usrChoice))
+browseItems(main_menu(usrChoice))
