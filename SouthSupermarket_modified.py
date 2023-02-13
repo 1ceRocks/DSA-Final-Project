@@ -198,7 +198,7 @@ def browseItems(usrChoice):
             progIndicator = "{}".format("%-35s %-35s %s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
             print(f"\n \b{bold}{yellow}Your Cart{reset}\n\n \b{progIndicator}")
             for key in shoppingDict:
-                print("%-35s %-32s %s" %(f"{blue}{key}", f"{green}{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}"))
+                print("%-35s %-35s %s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}"))
         consumerCart()
         while True:
             verUser = input("\n \bDo you wish to add more items? (yes / no) \n>>> ")
