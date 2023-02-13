@@ -156,7 +156,7 @@ def sumItems():
     for key in shoppingDict:
         print(f"{key}    {shoppingDict[key]['quantity']}        {shoppingDict[key]['subtotal']}")
         shopping_Sum = shoppingDict[key]['subtotal'] + shopping_Sum
-    print(f" \bTotal: {shoppingDict}")
+    print(f" \bTotal: {shopping_Sum}")
     print("***********Thank You********")
     print("Hope to see you back soon!")
     
