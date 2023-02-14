@@ -10,18 +10,20 @@ shoppingDict = {}
 # shoppingDict={"eggs":{"quantity":2,"subtotal":itemAvailableDict["egg"]*2}}
 #welcome User
 
-#? userName is the name of the user itself. This is used to identify the user and the user can access the information.
-os.system('cls')
-userName = input("Please enter your name: ")
+def welcomeMsg():
+    #? userName is the name of the user itself. This is used to identify the user and the user can access the information.
+    os.system('cls')
+    userName = input("Please enter your name: ")
 
-#? variable for welcoming the user intended for greetings.
-os.system('cls')
-welcomeMessage = f" \bWelcome to VILLARIZA South Supermarket, \n{userName}."
-lenWCMsg = len(welcomeMessage)
-print("*" * lenWCMsg + "\n")
-print(welcomeMessage)
-print("\n" + "*" * lenWCMsg)
-time.sleep(2)
+    #? variable for welcoming the user intended for greetings.
+    os.system('cls')
+    welcomeMessage = f" \bWelcome to VILLARIZA South Supermarket, \n{userName}."
+    lenWCMsg = len(welcomeMessage)
+    print("*" * lenWCMsg + "\n")
+    print(welcomeMessage)
+    print("\n" + "*" * lenWCMsg)
+    time.sleep(2)
+welcomeMsg()
 
 promos = open("grocerySection/promos.txt")
 freshMeatSeafoods = open("grocerySection/freshMeatSeafoods.txt")
@@ -190,51 +192,55 @@ def browseItems(usrChoice):
     item_added = input("\n \bAdd an item: ")
     
     if item_added.title() in itemAvailableDict:
-        item_qty = int(input("Add quantity: "))
-        if item_qty > 0:
-            shoppingDict.update({item_added:{"quantity":item_qty,"subtotal":itemAvailableDict[item_added.title()]*item_qty}})
-            def consumerCart():
-                os.system('cls')
-                productAisle(usrChoice)
-                progIndicator = "{}".format("%-40s %-40s %s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
-                print(f"\n \b{bold}{yellow}Your Cart{reset}\n\n \b{progIndicator}")
-                for key in shoppingDict:
-                    print("%-40s %-40s %s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}{reset}"))
-            consumerCart()
-            while True:
-                verUser = input("\n \bDo you wish to add more items? (yes / no) \n\n{white}>>> ")
-                if verUser.lower() == "no":
-                    sumItems()
-                    exit()
+        def productQuantity():
+            item_qty = int(input("Add quantity: "))
+            if item_qty > 0:
+                shoppingDict.update({item_added:{"quantity":item_qty,"subtotal":itemAvailableDict[item_added.title()]*item_qty}})
+                def consumerCart():
+                    os.system('cls')
+                    productAisle(usrChoice)
+                    progIndicator = "{}".format("%-40s %-40s %s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
+                    print(f"\n \b{bold}{yellow}Your Cart{reset}\n\n \b{progIndicator}")
+                    for key in shoppingDict:
+                        print("%-40s %-40s %s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}{reset}"))
+                consumerCart()
+                while True:
+                    verUser = input(f"\n \bDo you wish to add more items? (yes / no) \n\n{bold}>>> ")
+                    if verUser.lower() == "no":
+                        sumItems()
+                        exit()
 
-                elif verUser.lower() == "yes":
-                    os.system('cls')
-                    productAisle(usrChoice)
-                    consumerCart()
-                    browseItems(usrChoice)  
-                    
-                else:    
-                    os.system('cls')
-                    productAisle(usrChoice)
-                    print('Please input a correct feed on the program.')
-                    continue
-        elif item_qty <= 0:
-            print("Unable to read less than 0 quantity for the said item.")
-            browseItems(usrChoice)
-            
-        elif item_qty.title() == ("Q" or "Quit"):
-            os.system('cls')
-            browseItems(main_menu(usrChoice)) 
-               
-        else:
-            print("Unable to add unavailable item.")
-            browseItems(usrChoice)    
+                    elif verUser.lower() == "yes":
+                        os.system('cls')
+                        productAisle(usrChoice)
+                        consumerCart()
+                        browseItems(usrChoice)  
+                        
+                    else:    
+                        os.system('cls')
+                        productAisle(usrChoice)
+                        print('Please input a correct feed on the program.')
+                        continue
+            elif item_qty <= 0:
+                print("Unable to read less than 0 quantity for the said item.")
+                productQuantity()
+                
+            elif item_qty.title() == ("Q" or "Quit"):
+                os.system('cls')
+                browseItems(main_menu(usrChoice)) 
+                
+            else:
+                print("Unable to add unavailable item.")
+                productQuantity()    
+        productQuantity()
             
     elif item_added.title() == ("Q" or "Quit"):
         os.system('cls')
         browseItems(main_menu(usrChoice)) 
                
     else:
+        os.system('cls')
+        productAisle(usrChoice)
         print("Unable to add unavailable item.")
         browseItems(usrChoice)
                   
