@@ -15,5 +15,9 @@ root.resizable(False, False)
 
 Label(text = "VILLARIZA South Supermarket", bg = "black", fg = "white", font = ("Verdana", 33), width = "300", height = "2").pack()
 
+#? MENU CARD
+f = Frame(root, bg = "lightgreen", highlightbackground = "black", highlightthickness = 1, width = 450, height = 440)
+f.place(x = 10, y = 120)
+
 # pyCanvas.pack()
 root.mainloop()
