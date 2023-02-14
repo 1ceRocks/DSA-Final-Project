@@ -38,5 +38,10 @@ f2.place(x = 1040, y = 120)
 
 Bill = Label(f2, text = "Bill Management", font = ('Gabriola', 40, "bold"), fg = "black", bg = "lightblue").place(x = 80, y = 0)
 
+#? ENTRY WORK
+f1 = Frame(root, bd = 5, width = 500, height = 670, relief = RAISED)
+f1.pack()
+f1.place(x = 475, y = 120)
+
 # pyCanvas.pack()
 root.mainloop()
