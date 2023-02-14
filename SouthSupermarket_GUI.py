@@ -55,5 +55,17 @@ promo8 = StringVar()
 promo9 = StringVar()
 promo10 = StringVar()
 
+#? LABEL
+lbl_promo1 = Label(f1, font = ("Verdana", 15, "bold"), text = "Pancit Canton", width = 28, fg = "blue4")
+lbl_promo2 = Label(f1, font = ("Verdana", 15, "bold"), text = "Knorr Sinigang", width = 28, fg = "blue4")
+lbl_promo3 = Label(f1, font = ("Verdana", 15, "bold"), text = "Master Gulaman Gelatin", width = 28, fg = "blue4")
+lbl_promo4 = Label(f1, font = ("Verdana", 15, "bold"), text = "Silver Swan Suka Sup", width = 28, fg = "blue4")
+lbl_promo5 = Label(f1, font = ("Verdana", 15, "bold"), text = "Ajinomoto Sarsaya Oyster Sauce", width = 28, fg = "blue4")
+lbl_promo6 = Label(f1, font = ("Verdana", 15, "bold"), text = "Silka Soap Papaya", width = 28, fg = "blue4")
+lbl_promo7 = Label(f1, font = ("Verdana", 15, "bold"), text = "CDO Meat Loaf", width = 28, fg = "blue4")
+lbl_promo8 = Label(f1, font = ("Verdana", 15, "bold"), text = "Tang Powdered Juice", width = 28, fg = "blue4")
+lbl_promo9 = Label(f1, font = ("Verdana", 15, "bold"), text = "Dutch Mill Yoghurt Drink", width = 28, fg = "blue4")
+lbl_promo10 = Label(f1, font = ("Verdana", 15, "bold"), text = "Lucky Me Batchoy", width = 28, fg = "blue4")
+
 # pyCanvas.pack()
 root.mainloop()
