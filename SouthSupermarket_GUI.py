@@ -32,5 +32,11 @@ Label(f, font = ("Verdana", 11, 'bold'), text = "Tang Powdered Juice            
 Label(f, font = ("Verdana", 11, 'bold'), text = "Dutch Mill Yoghurt Drink                = PHP 20.50/qty.", fg = "black", bg = "lightgreen").place(x = 10, y = 370)
 Label(f, font = ("Verdana", 11, 'bold'), text = "Lucky Me Batchoy                          = PHP 21.00/qty.", fg = "black", bg = "lightgreen").place(x = 10, y = 405)
 
+#? BILL
+f2 = Frame(root, bg = "lightblue", highlightbackground = "black", highlightthickness = 1, width = 450, height = 440)
+f2.place(x = 1040, y = 120)
+
+Bill = Label(f2, text = "Bill Management", font = ('Gabriola', 40, "bold"), fg = "black", bg = "lightblue").place(x = 80, y = 0)
+
 # pyCanvas.pack()
 root.mainloop()
