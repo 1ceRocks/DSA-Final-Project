@@ -136,6 +136,7 @@ def yourCart():
 
 #? for loop through the list in appending the element to a dictionary (itemAvailableDict)
 def main_menu(usrChoice):
+    os.system('cls')
     progTitle = "{}".format(f"\n{reset}{bgYellow}{bold}{black} Available Product Category {reset}\n")
     progTitle2 = "{}".format(f"\n\n{reset}{bgYellow}{bold}{black} Consumer Options {reset}\n")
     progNum = "{}".format(f"\n \b{bold}{blue}1. {yellow}Promos \n{blue}2. {yellow}Fresh Meat and Seafoods \n{blue}3. {yellow}Fresh Produce \n{blue}4. {yellow}Snacks \n{blue}5. {yellow}Beverage{reset}")
