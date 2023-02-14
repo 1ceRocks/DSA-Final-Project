@@ -350,7 +350,7 @@ def browseItems(usrChoice):
                                 os.system('cls')
                                 productAisle(usrChoice)
                                 consumerCart()
-                                browseItems(main_menu(usrChoice))  
+                                browseItems(usrChoice)  
                                 
                             else:    
                                 os.system('cls')
