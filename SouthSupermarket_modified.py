@@ -25,20 +25,41 @@ def welcomeMsg():
     time.sleep(2)
 welcomeMsg()
 
+def openProduct1(Avail):
+    promos = open("grocerySection/promos.txt")
+    Avail = promos.readlines()
+    promos.close()
+    return Avail
 
-promos = open("grocerySection/promos.txt")
-freshMeatSeafoods = open("grocerySection/freshMeatSeafoods.txt")
-freshProduce = open("grocerySection/freshProduce.txt")
-promosAvail = promos.readlines()
-fMSAvail = freshMeatSeafoods.readlines()
-fPRAvail = freshProduce.readlines()
-promos.close() 
-freshMeatSeafoods.close()
-freshProduce.close()
+def openProduct2(Avail):
+    freshMeatSeafoods = open("grocerySection/freshMeatSeafoods.txt")
+    Avail = freshMeatSeafoods.readlines()
+    freshMeatSeafoods.close()
+    return Avail
 
-itemsAvailable = promosAvail
-itemsAvailable2 = fMSAvail
-itemsAvailable3 = fPRAvail
+def openProduct3(Avail):
+    freshProduce = open("grocerySection/freshProduce.txt")
+    Avail = freshProduce.readlines()
+    freshProduce.close()
+    return Avail
+
+def openProduct4(Avail):
+    snacks = open("grocerySection/snacks.txt")
+    Avail = snacks.readlines()
+    snacks.close()
+    return Avail
+
+def openProduct5(Avail):
+    beverage = open("grocerySection/beverage.txt")
+    Avail = beverage.readlines()
+    beverage.close()
+    return Avail
+
+itemsAvailable = openProduct1(1)
+itemsAvailable2 = openProduct2(2)
+itemsAvailable3 = openProduct3(3)
+itemsAvailable4 = openProduct3(4)
+itemsAvailable5 = openProduct3(5)
 
 def produceItems():
     for item in itemsAvailable:
@@ -52,6 +73,16 @@ def produceItems():
         itemAvailableDict.update({item_name: float(item_price)})
         
     for item in itemsAvailable3:
+        item_name = item.split()[0]
+        item_price = item.split()[1] 
+        itemAvailableDict.update({item_name: float(item_price)})
+        
+    for item in itemsAvailable4:
+        item_name = item.split()[0]
+        item_price = item.split()[1] 
+        itemAvailableDict.update({item_name: float(item_price)})
+        
+    for item in itemsAvailable5:
         item_name = item.split()[0]
         item_price = item.split()[1] 
         itemAvailableDict.update({item_name: float(item_price)})
@@ -97,7 +128,7 @@ bgBlack, bgRed, bgGreen, bgYellow, bgBlue, bgMagenta, bgCyan, bgWhite = backgrou
 #? for loop through the list in appending the element to a dictionary (itemAvailableDict)
 def main_menu(usrChoice):
     progTitle = "{}".format(f"\n{reset}Consumer-Product Category\n")
-    progGreet = "{}".format(f"\b1. Promos \n2. Fresh Meat and Seafoods \n3. Fresh Produce")
+    progGreet = "{}".format(f"\b1. Promos \n2. Fresh Meat and Seafoods \n3. Fresh Produce \n3. Snacks \n5. Beverage")
     def progInf():
         print(progTitle, progGreet.ljust(10))
     progInf()
@@ -105,7 +136,7 @@ def main_menu(usrChoice):
     while True:
         try:
             usrChoice = int(input(f"\n{reset}Select the following aisle/section you want to browse by typing the indicated number (1-3)\n\n \b>>> "))
-            if usrChoice > 3:
+            if usrChoice > 5:
                 os.system('cls')
                 print('Input not recognized or out of range.')
                 main_menu(usrChoice)
@@ -127,7 +158,7 @@ def productAisle(usrChoice):
     if usrChoice == 1:   
         def promoSec():
             print(f"{reset}{bold}{yellow:20s}PROMOS PRODUCT CATEGORY{reset}\n")
-            for item in promosAvail:
+            for item in itemsAvailable:
                 item_name = item.split()[0]
                 item_price = item.split()[1]
                 rec = f"{reset}{blue}{item_name:40s}{gap}{green}PHP {item_price:^6s}{reset}"
@@ -138,7 +169,7 @@ def productAisle(usrChoice):
     elif usrChoice == 2:
         def fMSSec():    
             print(f"{reset}{bold}{yellow:15s}FRESH MEAT & SEAFOODS CATEGORY{reset}\n")
-            for item in fMSAvail:
+            for item in itemsAvailable2:
                 item_name = item.split()[0]
                 item_price = item.split()[1]
                 rec = f"{reset}{blue}{item_name:40s}{gap}{green}PHP {item_price:^6s}{reset}" 
@@ -149,13 +180,35 @@ def productAisle(usrChoice):
     elif usrChoice == 3:
         def fPRSec():    
             print(f"{reset}{bold}{yellow:20s}FRESH PRODUCE CATEGORY{reset}\n")
-            for item in fPRAvail:
+            for item in itemsAvailable3:
                 item_name = item.split()[0]
                 item_price = item.split()[1]
                 rec = f"{reset}{blue}{item_name:40s}{gap}{green}PHP {item_price:^6s}{reset}" 
                 print(rec)
             print(f"{bold}{white}-{reset}"*53)
         fPRSec()
+        return usrChoice
+    elif usrChoice == 4:
+        def snacksSec():    
+            print(f"{reset}{bold}{yellow:20s}SNACKS CATEGORY{reset}\n")
+            for item in itemsAvailable3:
+                item_name = item.split()[0]
+                item_price = item.split()[1]
+                rec = f"{reset}{blue}{item_name:40s}{gap}{green}PHP {item_price:^6s}{reset}" 
+                print(rec)
+            print(f"{bold}{white}-{reset}"*53)
+        snacksSec()
+        return usrChoice
+    elif usrChoice == 5:
+        def bvgSec():    
+            print(f"{reset}{bold}{yellow:20s}BEVERAGE CATEGORY{reset}\n")
+            for item in itemsAvailable3:
+                item_name = item.split()[0]
+                item_price = item.split()[1]
+                rec = f"{reset}{blue}{item_name:40s}{gap}{green}PHP {item_price:^6s}{reset}" 
+                print(rec)
+            print(f"{bold}{white}-{reset}"*53)
+        bvgSec()
         return usrChoice
 
 print("*" * 20)
