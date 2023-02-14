@@ -186,16 +186,24 @@ def sumItems():
         
 def browseItems(usrChoice):
     progExit = "{}".format(f"Type and enter the Q key to exit the Product Category Aisle anytime.")
-    def verUser():
+    def askUser():
         print("\n" + progExit)
-    verUser()
+    askUser()
     item_added = input("\n \bAdd an item: ")
     
     if item_added.title() in itemAvailableDict:
+        os.system('cls')
         def productQuantity():
-            item_qty = int(input("Add quantity: "))
-            if item_qty > 0:
-                shoppingDict.update({item_added:{"quantity":item_qty,"subtotal":itemAvailableDict[item_added.title()]*item_qty}})
+            productAisle(usrChoice)
+            askUser()
+            item_qty = input("\n \bEnter Quantity \n\n>>>  ")
+            
+            if str(item_qty).title() == "Q":
+                os.system('cls')
+                browseItems(main_menu(usrChoice))  
+            elif int(item_qty) > 0:
+                right_qty = int(item_qty)
+                shoppingDict.update({item_added:{"quantity":right_qty,"subtotal":itemAvailableDict[item_added.title()]*right_qty}})
                 def consumerCart():
                     os.system('cls')
                     productAisle(usrChoice)
@@ -221,13 +229,9 @@ def browseItems(usrChoice):
                         productAisle(usrChoice)
                         print('Please input a correct feed on the program.')
                         continue
-            elif item_qty <= 0:
+            elif int(item_qty) <= 0:
                 print("Unable to read less than 0 quantity for the said item.")
-                productQuantity()
-                
-            elif item_qty.title() == ("Q" or "Quit"):
-                os.system('cls')
-                browseItems(main_menu(usrChoice)) 
+                productQuantity() 
                 
             else:
                 print("Unable to add unavailable item.")
