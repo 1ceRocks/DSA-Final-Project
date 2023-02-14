@@ -96,7 +96,7 @@ bgBlack, bgRed, bgGreen, bgYellow, bgBlue, bgMagenta, bgCyan, bgWhite = backgrou
 
 #? for loop through the list in appending the element to a dictionary (itemAvailableDict)
 def main_menu(usrChoice):
-    progTitle = "{}".format(f"\nConsumer-Product Category\n")
+    progTitle = "{}".format(f"\n{reset}Consumer-Product Category\n")
     progGreet = "{}".format(f"\b1. Promos \n2. Fresh Meat and Seafoods \n3. Fresh Produce")
     def progInf():
         print(progTitle, progGreet.ljust(10))
@@ -104,7 +104,7 @@ def main_menu(usrChoice):
     
     while True:
         try:
-            usrChoice = int(input("\nSelect the following aisle/section you want to browse by typing the indicated number (1-3) \n \b>>> "))
+            usrChoice = int(input(f"\n{reset}Select the following aisle/section you want to browse by typing the indicated number (1-3)\n\n \b>>> "))
             if usrChoice > 3:
                 os.system('cls')
                 print('Input not recognized or out of range.')
@@ -215,50 +215,55 @@ def browseItems(usrChoice):
                     productAisle(usrChoice)
                     print(f"\n{reset}{italic}{red}Unable to add unavailable item.{reset}")
             askUser()
-            item_qty = input(f"\n \bEnter Quantity:{bold}{white} ")
             
-            if str(item_qty).title() == "Q":
-                os.system('cls')
-                browseItems(main_menu(usrChoice))
-            
-            elif (str(item_qty).isalpha()) or (str(item_qty).isalnum()) or (str(item_qty).isspace()):
-                inputError()
-                productQuantity() 
-            elif int(item_qty) > 0:
-                right_qty = int(item_qty)
-                shoppingDict.update({item_added:{"quantity":right_qty,"subtotal":itemAvailableDict[item_added.title()]*right_qty}})
-                def consumerCart():
-                    os.system('cls')
-                    productAisle(usrChoice)
-                    progIndicator = "{}".format("%-40s %-40s %-40s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
-                    print(f"\n \b{bold}{yellow}Your Cart{reset}\n\n \b{progIndicator}")
-                    for key in shoppingDict:
-                        print("%-40s %-40s %-40s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}{reset}"))
-                consumerCart()
-                while True:
-                    verUser = input(f"\n \bDo you wish to add more items? ({bold}{white}yes {reset}/ {bold}{white}no{reset}) \n\n{bold}>>> ")
-                    if verUser.lower() == "no":
-                        sumItems()
-                        exit()
-
-                    elif verUser.lower() == "yes":
-                        os.system('cls')
-                        productAisle(usrChoice)
-                        consumerCart()
-                        browseItems(usrChoice)  
-                        
-                    else:    
-                        os.system('cls')
-                        productAisle(usrChoice)
-                        print('Please input a correct feed on the program.')
-                        continue
-            elif int(item_qty) <= 0:
-                print("Unable to read 0 or less than quantity for the said item.")
-                productQuantity() 
+            def usrQuantity():
+                print(f"\n \b{reset}Chosen Item: {blue}{item_added.title()}{reset}")
+                try:
+                    item_qty = input(f"\nEnter Quantity:{bold}{white} ")
                 
-            else:
-                inputError()
-                productQuantity()    
+                    if str(item_qty).title() == "Q":
+                        os.system('cls')
+                        browseItems(main_menu(usrChoice))
+                    
+                    elif str(item_qty).isalpha():
+                        inputError()
+                        usrQuantity()
+                        
+                    elif int(item_qty) > 0:
+                        right_qty = int(item_qty)
+                        shoppingDict.update({item_added:{"quantity":right_qty,"subtotal":itemAvailableDict[item_added.title()]*right_qty}})
+                        def consumerCart():
+                            os.system('cls')
+                            productAisle(usrChoice)
+                            progIndicator = "{}".format("%-40s %-40s %-40s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
+                            print(f"\n \b{bold}{yellow}Your Cart{reset}\n\n \b{progIndicator}")
+                            for key in shoppingDict:
+                                print("%-40s %-40s %-40s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}{reset}"))
+                        consumerCart()
+                        while True:
+                            verUser = input(f"\n \bDo you wish to add more items? ({bold}{white}yes {reset}/ {bold}{white}no{reset}) \n\n{bold}>>> ")
+                            if verUser.lower() == "no":
+                                sumItems()
+                                exit()
+
+                            elif verUser.lower() == "yes":
+                                os.system('cls')
+                                productAisle(usrChoice)
+                                consumerCart()
+                                browseItems(usrChoice)  
+                                
+                            else:    
+                                os.system('cls')
+                                productAisle(usrChoice)
+                                print('Please input a correct feed on the program.')
+                                continue
+                    elif int(item_qty) <= 0:
+                        print("Unable to read 0 or less than quantity for the said item.")
+                        productQuantity() 
+                except ValueError:
+                    inputError()
+                    usrQuantity()  
+            usrQuantity()
         productQuantity()
         
     elif item_added.title() == "Q":
