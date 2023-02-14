@@ -254,9 +254,10 @@ def productAisle(usrChoice):
                     yourCart()
                 if editOpt.lower() == "change":
                         editQty = input(f"Update the quantity that you want for this item.\n")
-                        shoppingDict[item]['quantity'] = int(editQty)
                         right_qty = int(editQty)
-                        shoppingDict.update({"subtotal":itemAvailableDict[verUser.title()]*right_qty})
+                        shoppingDict.update({verUser:{"quantity":right_qty,"subtotal":itemAvailableDict[verUser.title()]*right_qty}})
+                        # shoppingDict[item]['quantity'] = float(editQty)
+                        # shoppingDict.update({"subtotal":itemAvailableDict[verUser.title()]['subtotal']*right_qty})
                         yourCart()
 
 print("*" * 20)
