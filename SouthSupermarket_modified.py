@@ -129,14 +129,16 @@ bgBlack, bgRed, bgGreen, bgYellow, bgBlue, bgMagenta, bgCyan, bgWhite = backgrou
 def main_menu(usrChoice):
     os.system('cls')
     progTitle = "{}".format(f"\n{reset}{bgYellow}{bold}{black} Available Product Category {reset}\n")
-    progGreet = "{}".format(f"\n \b{bold}{blue}1. {yellow}Promos \n{blue}2. {yellow}Fresh Meat and Seafoods \n{blue}3. {yellow}Fresh Produce \n{blue}4. {yellow}Snacks \n{blue}5. {yellow}Beverage{reset}")
+    progTitle2 = "{}".format(f"\n\n{reset}{bgYellow}{bold}{black} Consumer Options {reset}\n")
+    progNum = "{}".format(f"\n \b{bold}{blue}1. {yellow}Promos \n{blue}2. {yellow}Fresh Meat and Seafoods \n{blue}3. {yellow}Fresh Produce \n{blue}4. {yellow}Snacks \n{blue}5. {yellow}Beverage{reset}")
+    progNum2 = "{}".format(f"\n \b{bold}{blue}6. {yellow}View My Cart \n{blue}7. {yellow}Edit My Cart \n{blue}8. {yellow}Checkout{reset}")
     def progInf():
-        print(progTitle, progGreet.ljust(10))
+        print(progTitle, progNum, progTitle2, progNum2)
     progInf()
     
     while True:
         try:
-            usrChoice = int(input(f"\n{reset}Select the following {bold}{white}{underlined}category{reset} you want to browse by typing the indicated number {bold}{blue}(1-5){reset}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} "))
+            usrChoice = int(input(f"\n{reset}Select the following {bold}{white}{underlined}category{reset} you want to browse by typing the indicated number {bold}{blue}(1-7){reset}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} "))
             if usrChoice > 5:
                 os.system('cls')
                 print(f'{reset}Input not recognized or out of range.')
@@ -201,6 +203,17 @@ def productAisle(usrChoice):
         snacksSec()
         return usrChoice
     elif usrChoice == 5:
+        def bvgSec():    
+            print(f"{reset}{bold}{yellow:21s}BEVERAGE CATEGORY{reset}\n")
+            for item in itemsAvailable5:
+                item_name = item.split()[0]
+                item_price = item.split()[1]
+                rec = f"{reset}{blue}{item_name:40s}{gap}{green}PHP {item_price:^6s}{reset}" 
+                print(rec)
+            print(f"{bold}{white}-{reset}"*53)
+        bvgSec()
+        return usrChoice
+    elif usrChoice == 6:
         def bvgSec():    
             print(f"{reset}{bold}{yellow:21s}BEVERAGE CATEGORY{reset}\n")
             for item in itemsAvailable5:
