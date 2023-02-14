@@ -177,8 +177,7 @@ def sumItems():
         print("%-30s %-30s %s" %(key, shoppingDict[key]['quantity'], shoppingDict[key]['subtotal']))
         shopping_Sum = shoppingDict[key]['subtotal'] + shopping_Sum
     print(f" \bTotal: {shopping_Sum}")
-    print("***********Thank You********")
-    print("Hope to see you back soon!")
+    exit()
     
 # def purchaseItems(usrChoice):
 #     proceedShopping = input(" \bDo you wish to proceed? (yes / no) \n>>> ")
@@ -213,13 +212,13 @@ def browseItems(usrChoice):
             def inputError():
                     os.system('cls')
                     productAisle(usrChoice)
-                    print(f"\n{reset}{italic}{red}Unable to add unavailable item.{reset}")
+                    print(f"\n{reset}{italic}{red}Input not recognized. Please try again.{reset}")
             askUser()
             
             def usrQuantity():
                 print(f"\n \b{reset}Chosen Item: {blue}{item_added.title()}{reset}")
                 try:
-                    item_qty = input(f"\nEnter Quantity:{bold}{white} ")
+                    item_qty = input(f"Enter Quantity:{bold}{white} ")
                 
                     if str(item_qty).title() == "Q":
                         os.system('cls')
@@ -227,6 +226,7 @@ def browseItems(usrChoice):
                     
                     elif str(item_qty).isalpha():
                         inputError()
+                        askUser()
                         usrQuantity()
                         
                     elif int(item_qty) > 0:
@@ -241,10 +241,9 @@ def browseItems(usrChoice):
                                 print("%-40s %-40s %-40s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}{reset}"))
                         consumerCart()
                         while True:
-                            verUser = input(f"\n \bDo you wish to add more items? ({bold}{white}yes {reset}/ {bold}{white}no{reset}) \n\n{bold}>>> ")
+                            verUser = input(f"\n \bDo you wish to {bold}{underlined}{green}add{reset} more {bold}{blue}items?{reset} ({bold}{white}yes {reset}/ {bold}{white}no{reset}) \n\n{bold}>>> ")
                             if verUser.lower() == "no":
-                                sumItems()
-                                exit()
+                                browseItems(main_menu(usrChoice))
 
                             elif verUser.lower() == "yes":
                                 os.system('cls')
@@ -262,6 +261,7 @@ def browseItems(usrChoice):
                         productQuantity() 
                 except ValueError:
                     inputError()
+                    askUser()
                     usrQuantity()  
             usrQuantity()
         productQuantity()
