@@ -58,8 +58,8 @@ def openProduct5(Avail):
 itemsAvailable = openProduct1(1)
 itemsAvailable2 = openProduct2(2)
 itemsAvailable3 = openProduct3(3)
-itemsAvailable4 = openProduct3(4)
-itemsAvailable5 = openProduct3(5)
+itemsAvailable4 = openProduct4(4)
+itemsAvailable5 = openProduct5(5)
 
 def produceItems():
     for item in itemsAvailable:
@@ -127,22 +127,23 @@ bgBlack, bgRed, bgGreen, bgYellow, bgBlue, bgMagenta, bgCyan, bgWhite = backgrou
 
 #? for loop through the list in appending the element to a dictionary (itemAvailableDict)
 def main_menu(usrChoice):
-    progTitle = "{}".format(f"\n{reset}Consumer-Product Category\n")
-    progGreet = "{}".format(f"\b1. Promos \n2. Fresh Meat and Seafoods \n3. Fresh Produce \n3. Snacks \n5. Beverage")
+    os.system('cls')
+    progTitle = "{}".format(f"\n{reset}{bgYellow}{bold}{black} Available Product Category {reset}\n")
+    progGreet = "{}".format(f"\n \b{bold}{blue}1. {yellow}Promos \n{blue}2. {yellow}Fresh Meat and Seafoods \n{blue}3. {yellow}Fresh Produce \n{blue}4. {yellow}Snacks \n{blue}5. {yellow}Beverage{reset}")
     def progInf():
         print(progTitle, progGreet.ljust(10))
     progInf()
     
     while True:
         try:
-            usrChoice = int(input(f"\n{reset}Select the following aisle/section you want to browse by typing the indicated number (1-3)\n\n \b>>> "))
+            usrChoice = int(input(f"\n{reset}Select the following {bold}{white}{underlined}category{reset} you want to browse by typing the indicated number {bold}{blue}(1-5){reset}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} "))
             if usrChoice > 5:
                 os.system('cls')
-                print('Input not recognized or out of range.')
+                print(f'{reset}Input not recognized or out of range.')
                 main_menu(usrChoice)
         except ValueError:
             os.system('cls')
-            print('Input not recognized. Please try again.')
+            print(f'{reset}Input not recognized. Please try again.')
             main_menu(usrChoice)
         finally:
             productAisle(usrChoice)
@@ -190,8 +191,8 @@ def productAisle(usrChoice):
         return usrChoice
     elif usrChoice == 4:
         def snacksSec():    
-            print(f"{reset}{bold}{yellow:20s}SNACKS CATEGORY{reset}\n")
-            for item in itemsAvailable3:
+            print(f"{reset}{bold}{yellow:22s}SNACKS CATEGORY{reset}\n")
+            for item in itemsAvailable4:
                 item_name = item.split()[0]
                 item_price = item.split()[1]
                 rec = f"{reset}{blue}{item_name:40s}{gap}{green}PHP {item_price:^6s}{reset}" 
@@ -201,8 +202,8 @@ def productAisle(usrChoice):
         return usrChoice
     elif usrChoice == 5:
         def bvgSec():    
-            print(f"{reset}{bold}{yellow:20s}BEVERAGE CATEGORY{reset}\n")
-            for item in itemsAvailable3:
+            print(f"{reset}{bold}{yellow:21s}BEVERAGE CATEGORY{reset}\n")
+            for item in itemsAvailable5:
                 item_name = item.split()[0]
                 item_price = item.split()[1]
                 rec = f"{reset}{blue}{item_name:40s}{gap}{green}PHP {item_price:^6s}{reset}" 
