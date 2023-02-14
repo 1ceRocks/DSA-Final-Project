@@ -110,20 +110,35 @@ black, red, green, yellow, blue, magenta, cyan, white = foregroundColors(1, 2, 3
 
 bgBlack, bgRed, bgGreen, bgYellow, bgBlue, bgMagenta, bgCyan, bgWhite = backgroundColors(1, 2, 3, 4, 5, 6, 7, 8)
 
-def welcomeMsg():
+def welcomeMsg(usrNm):
     #? userName is the name of the user itself. This is used to identify the user and the user can access the information.
     os.system('cls')
-    userName = input(f"{yellow}{bold} CUSTOMER NAME {reset}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} ")
+    usrNm = input(f"{yellow}{bold} CUSTOMER NAME {reset}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} ")
 
     #? variable for welcoming the user intended for greetings.
     os.system('cls')
-    welcomeMessage = f"{reset} \bWelcome to {bgBlack}{bold} VILLARIZA South Supermarket {reset}\n\n{bold}{cyan}{userName.upper()}{reset}"
+    welcomeMessage = f"{reset} \bWelcome to {bgBlack}{bold} VILLARIZA South Supermarket {reset}\n\n{bold}{cyan}{usrNm.upper()}{reset}"
     lenWCMsg = len(welcomeMessage)
     print(f"{reset}{bold}{blue}="*lenWCMsg)
     print(f"\n{welcomeMessage}\n")
     print(f"{reset}{bold}{yellow}-"*lenWCMsg)
     time.sleep(3)
-welcomeMsg()
+    return usrNm
+userName = welcomeMsg(1)
+
+def goodbyeMsg(userName):
+    #? userName is the name of the user itself. This is used to identify the user and the user can access the information.
+    os.system('cls')
+    print(f"{yellow}{bold} {userName} {reset}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} ")
+
+    #? variable for welcoming the user intended for greetings.
+    os.system('cls')
+    welcomeMessage = f"{reset} \b{bold}{green}Thank you for your service,{reset} \n\n{bold}{yellow}CUSTOMER NAME: {cyan}{userName.upper()} {reset}!\n\n\n \b{bold}Please come back again anytime soon!{reset} \n\n{italic}Fritz Cedrick Villariza,\n{bold}{red}CEO{reset}{italic} of {bgBlack}{bold} VILLARIZA South Supermarket {reset}"
+    lenWCMsg = len(welcomeMessage)
+    print(f"{reset}{bold}{blue}="*lenWCMsg)
+    print(f"{welcomeMessage}")
+    print(f"{reset}{bold}{yellow}-"*lenWCMsg + f"{reset}\n")
+    exit()
 
 def yourCart():
     os.system('cls')
@@ -137,12 +152,14 @@ def yourCart():
 #? for loop through the list in appending the element to a dictionary (itemAvailableDict)
 def main_menu(usrChoice):
     os.system('cls')
+    progMarket = "{}".format(f"{reset}{bgBlack}{bold} VILLARIZA South Supermarket {reset}\n")
+    progUser ="{}".format(f"\n{reset}{bold}{yellow}Customer Name: {cyan}{userName.title()}{reset}\n")
     progTitle = "{}".format(f"\n{reset}{bgYellow}{bold}{black} Available Product Category {reset}\n")
     progTitle2 = "{}".format(f"\n\n{reset}{bgYellow}{bold}{black} Consumer Options {reset}\n")
     progNum = "{}".format(f"\n \b{bold}{blue}1. {yellow}Promos \n{blue}2. {yellow}Fresh Meat and Seafoods \n{blue}3. {yellow}Fresh Produce \n{blue}4. {yellow}Snacks \n{blue}5. {yellow}Beverage{reset}")
     progNum2 = "{}".format(f"\n \b{bold}{blue}6. {yellow}View My Cart \n{blue}7. {yellow}Edit My Cart \n{blue}8. {yellow}Checkout{reset}")
     def progInf():
-        print(progTitle, progNum, progTitle2, progNum2)
+        print(progMarket, progUser, progTitle, progNum, progTitle2, progNum2)
     progInf()
     
     while True:
@@ -173,12 +190,15 @@ def sumItems():
         print("%-30s %-30s %s" %(key, shoppingDict[key]['quantity'], shoppingDict[key]['subtotal']))
         shopping_Sum = shoppingDict[key]['subtotal'] + shopping_Sum
     print(f"{reset}\n \b{bold}{red}TOTAL{white}: {green}PHP {shopping_Sum:.2f}{reset}\n")
-    progExit = "{}".format(f"{reset}Type and enter the {bold}{white}Q{reset} key to exit viewing {italic}{yellow}your cart{reset} anytime.")
+    progExit = "{}".format(f"{reset}Type and enter the {bold}{white}Q{reset} key to exit viewing {italic}{yellow}your cart{reset} anytime. Type {bold}{red}{underlined}exit{reset} if you are done purchasing at {bgBlack}{bold}VILLARIZA South Supermarket.{reset}")
     varBreak = True
     while varBreak:
         verUser = input(f"\n{progExit}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} ")    
         if verUser.title() == "Q":
             browseItems(main_menu(usrChoice))
+            varBreak = False
+        elif verUser.title() == "Exit":
+            goodbyeMsg(userName)
             varBreak = False
         else:
             print(f"\n{reset}{italic}{red}Input not recognized. Please try again.{reset}")
