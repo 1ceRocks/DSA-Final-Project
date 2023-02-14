@@ -8,13 +8,3 @@ Chicken-Thighs 96.80
 Chicken-Drumstick 96.80
 Pork-Sinigang-Cut 97.50
 Chicken-Recado-Cut 114.95
-Pink-Salmon-Head 133.50
-Chicken-Breast 139.15
-Pork-Chop 141.50
-Caldereta-Cut 143.50
-Galunggong-Tuna 183.50
-Bangus-Large 192.00
-Fresh-Breakfast-Steak 224.40
-Sirloin-Tips 246.95
-Suahe 249.50
-Pink-Salmon-Steak 497.50

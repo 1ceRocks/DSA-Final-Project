@@ -8,13 +8,3 @@ Celery 23.75
 Calamansi 24.80
 Ginger-Turmeric 25.90
 Stringbeans 28.00
-Radish-White 28.50
-Hydroponic-Lettuce-Green 29.40
-Gulaman 30.00
-Pepper-Taiwan 33.00
-Carrots 33.00
-Papaya-Solo 33.60
-Sili-Sigang 33.80
-Solo-Papaya 48.00
-Pineapple 74.00
-Washington-Apple 175.00

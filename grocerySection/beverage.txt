@@ -8,13 +8,3 @@ Zesto-Choc-O 18.00
 Great-Taste-Iced-Coffee 19.50
 Nestea-Iced-Tea 19.95
 Great-Taste-Granules 21.00
-Nescafe-Refill-Classic 21.50
-Real-Leaf-Green-Tea 22.50
-SmartC-Juice-Drink 24.50
-Zesto-RootBeer 30.00
-Pepsi-Can 31.50
-C2-Plus-Apple 31.50
-Mug-RootBeer 31.50
-Mountain-Dew 31.50
-Blue-Calamansi 32.50
-Coke-Can 34.95
