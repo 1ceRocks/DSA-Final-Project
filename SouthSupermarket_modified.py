@@ -127,7 +127,6 @@ bgBlack, bgRed, bgGreen, bgYellow, bgBlue, bgMagenta, bgCyan, bgWhite = backgrou
 
 #? for loop through the list in appending the element to a dictionary (itemAvailableDict)
 def main_menu(usrChoice):
-    os.system('cls')
     progTitle = "{}".format(f"\n{reset}{bgYellow}{bold}{black} Available Product Category {reset}\n")
     progTitle2 = "{}".format(f"\n\n{reset}{bgYellow}{bold}{black} Consumer Options {reset}\n")
     progNum = "{}".format(f"\n \b{bold}{blue}1. {yellow}Promos \n{blue}2. {yellow}Fresh Meat and Seafoods \n{blue}3. {yellow}Fresh Produce \n{blue}4. {yellow}Snacks \n{blue}5. {yellow}Beverage{reset}")
@@ -139,14 +138,14 @@ def main_menu(usrChoice):
     while True:
         try:
             usrChoice = int(input(f"\n{reset}Select the following {bold}{white}{underlined}category{reset} you want to browse by typing the indicated number {bold}{blue}(1-7){reset}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} "))
-            if usrChoice > 5:
+            if usrChoice > 8:
                 os.system('cls')
-                print(f'{reset}Input not recognized or out of range.')
                 main_menu(usrChoice)
+                print(f'{reset}Input not recognized or out of range.')
         except ValueError:
             os.system('cls')
-            print(f'{reset}Input not recognized. Please try again.')
             main_menu(usrChoice)
+            print(f'{reset}Input not recognized. Please try again.')
         finally:
             productAisle(usrChoice)
             break
@@ -214,16 +213,27 @@ def productAisle(usrChoice):
         bvgSec()
         return usrChoice
     elif usrChoice == 6:
-        def bvgSec():    
-            print(f"{reset}{bold}{yellow:21s}BEVERAGE CATEGORY{reset}\n")
-            for item in itemsAvailable5:
-                item_name = item.split()[0]
-                item_price = item.split()[1]
-                rec = f"{reset}{blue}{item_name:40s}{gap}{green}PHP {item_price:^6s}{reset}" 
-                print(rec)
-            print(f"{bold}{white}-{reset}"*53)
-        bvgSec()
-        return usrChoice
+        def usr6():
+            def yourCart():
+                os.system('cls')
+                progDesign = f"{bold}{white}={reset}"*80
+                progIndicator = "{}".format("%-40s %-40s %-40s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
+                print(f"\n \b{bold}{yellow}Your Cart{reset}\n{progDesign}\n \b{progIndicator}")
+                for key in shoppingDict:
+                    print("%-40s %-40s %-40s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}{reset}"))
+                print(f"{bold}{white}-{reset}"*80)
+            yourCart()
+            progExit = "{}".format(f"{reset}Type and enter the {bold}{white}Q{reset} key to exit viewing {italic}{yellow}your cart{reset} anytime.")
+            varBreak = True
+            while varBreak:
+                verUser = input(f"\n{progExit}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} ")    
+                if verUser.title() == "Q":
+                    browseItems(main_menu(usrChoice))
+                    varBreak = False
+                else:
+                    print(f"\n{reset}{italic}{red}Input not recognized. Please try again.{reset}")
+                    usr6()
+        usr6()
 
 print("*" * 20)
 # print(itemAvailableDict)
@@ -266,7 +276,7 @@ def sumItems():
        
         
 def browseItems(usrChoice):
-    progExit = "{}".format(f"{reset}Type and enter the {bold}{white}Q{reset} key to exit the {italic}{yellow}Product Category Aisle{reset} anytime.")
+    progExit = "{}".format(f"{reset}Type and enter the {bold}{white}Q{reset} key to exit the {italic}{yellow}Product Category{reset} anytime.")
     def askUser():
         print("\n" + progExit)
     askUser()
@@ -286,10 +296,12 @@ def browseItems(usrChoice):
                 print(f"\n \b{reset}Chosen Item: {blue}{item_added.title()}{reset}")
                 try:
                     item_qty = input(f"Enter Quantity:{bold}{white} ")
+                    usrRepeat = True
                 
                     if str(item_qty).title() == "Q":
                         os.system('cls')
-                        browseItems(main_menu(usrChoice))
+                        usrRepeat = False
+                        main_menu(usrChoice)
                     
                     elif str(item_qty).isalpha():
                         inputError()
@@ -307,10 +319,11 @@ def browseItems(usrChoice):
                             for key in shoppingDict:
                                 print("%-40s %-40s %-40s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}{reset}"))
                         consumerCart()
-                        while True:
+                        while usrRepeat:
                             verUser = input(f"\n \bDo you wish to {bold}{underlined}{green}add{reset} more {bold}{blue}items?{reset} ({bold}{white}yes {reset}/ {bold}{white}no{reset}) \n\n{bold}>>> ")
                             if verUser.lower() == "no":
-                                browseItems(main_menu(usrChoice))
+                                main_menu(usrChoice)
+                                usrRepeat = False
 
                             elif verUser.lower() == "yes":
                                 os.system('cls')
@@ -335,7 +348,7 @@ def browseItems(usrChoice):
         
     elif item_added.title() == "Q":
         os.system('cls')
-        browseItems(main_menu(usrChoice))
+        main_menu(usrChoice)
          
     elif item_added.title() not in itemAvailableDict:
         productAisle(usrChoice)
@@ -349,4 +362,4 @@ def browseItems(usrChoice):
         browseItems(usrChoice)
                   
 usrChoice = 0    
-browseItems(main_menu(usrChoice)) 
+browseItems(main_menu(usrChoice))
