@@ -24,6 +24,37 @@ def Reset():
     entry_8.delete(0, END)
     entry_9.delete(0, END)
     entry_10.delete(0, END)
+    
+def Total():
+    try: a1 = int(promo1.get())
+    except: a1 = 0
+    
+    try: a2 = int(promo2.get())
+    except: a2 = 0
+    
+    try: a3 = int(promo3.get()) 
+    except: a3 = 0
+    
+    try: a4 = int(promo4.get()) 
+    except: a4 = 0
+    
+    try: a5 = int(promo5.get()) 
+    except: a5 = 0
+    
+    try: a6 = int(promo6.get()) 
+    except: a6 = 0
+    
+    try: a7 = int(promo7.get()) 
+    except: a7 = 0
+    
+    try: a8 = int(promo8.get()) 
+    except: a8 = 0
+    
+    try: a9 = int(promo9.get()) 
+    except: a9 = 0
+    
+    try: a10 = int(promo10.get()) 
+    except: a10 = 0
 
 Label(text = "VILLARIZA South Supermarket", bg = "black", fg = "white", font = ("Verdana", 33), width = "300", height = "2").pack()
 
