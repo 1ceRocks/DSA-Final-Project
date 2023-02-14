@@ -322,7 +322,7 @@ def browseItems(usrChoice):
                     if str(item_qty).title() == "Q":
                         os.system('cls')
                         usrRepeat = False
-                        main_menu(usrChoice)
+                        browseItems(main_menu(usrChoice))
                     
                     elif str(item_qty).isalpha():
                         inputError()
@@ -378,7 +378,7 @@ def browseItems(usrChoice):
         
     elif item_added.title() == "Q":
         os.system('cls')
-        main_menu(usrChoice)
+        browseItems(main_menu(usrChoice))
          
     elif item_added.title() not in itemAvailableDict:
         productAisle(usrChoice)
