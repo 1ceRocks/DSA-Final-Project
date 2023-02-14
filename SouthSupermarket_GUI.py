@@ -67,6 +67,8 @@ def Total():
     c8 = 19.50 * a8
     c9 = 20.50 * a9
     c10 = 21.00 * a10
+    
+    totalcost = c1 + c2 + c3 + c4 + c5 + c6 + c7 +  c8 + c9 + c10
 
 Label(text = "VILLARIZA South Supermarket", bg = "black", fg = "white", font = ("Verdana", 33), width = "300", height = "2").pack()
 
