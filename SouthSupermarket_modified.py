@@ -354,6 +354,12 @@ def browseItems(usrChoice):
                                 browseItems(usrChoice) 
                                 usrRepeat = False 
                                 break
+                            
+                            elif verUser.title() == "Q":
+                                os.system('cls')
+                                usrRepeat = False
+                                browseItems(main_menu(usrChoice))
+                                break
                                 
                             else:    
                                 os.system('cls')
