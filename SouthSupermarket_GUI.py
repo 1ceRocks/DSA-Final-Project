@@ -69,6 +69,8 @@ def Total():
     c10 = 21.00 * a10
     
     totalcost = c1 + c2 + c3 + c4 + c5 + c6 + c7 +  c8 + c9 + c10
+    string_bill = "PHP", str('%.2f' % totalcost)
+    Total_bill.set(string_bill)
 
 Label(text = "VILLARIZA South Supermarket", bg = "black", fg = "white", font = ("Verdana", 33), width = "300", height = "2").pack()
 
