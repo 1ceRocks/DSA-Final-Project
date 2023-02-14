@@ -345,6 +345,7 @@ def browseItems(usrChoice):
                             if verUser.lower() == "no":
                                 browseItems(main_menu(usrChoice))
                                 usrRepeat = False
+                                break
 
                             elif verUser.lower() == "yes":
                                 os.system('cls')
@@ -352,6 +353,7 @@ def browseItems(usrChoice):
                                 consumerCart()
                                 browseItems(usrChoice) 
                                 usrRepeat = False 
+                                break
                                 
                             else:    
                                 os.system('cls')
