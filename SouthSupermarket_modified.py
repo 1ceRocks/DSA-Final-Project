@@ -248,13 +248,16 @@ def productAisle(usrChoice):
         verUser = input(f"\n{progEdit}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} ")
         for item in shoppingDict:
             if verUser == item:
-                print(f"Do you want to remove the item {verUser} or change its quantity? (remove / change)")
-                print(item)
-                
-        # for key in shoppingDict:
-        #     print("%-30s %-30s %s" %(key, shoppingDict[key]['quantity'], shoppingDict[key]['subtotal']))
-        #     shopping_Sum = shoppingDict[key]['subtotal'] + shopping_Sum
-        # print(f" \bTotal: {shopping_Sum}")
+                editOpt = input(f"Do you want to remove the item {verUser} or change its quantity? (remove / change)\n")
+                if editOpt.lower() == "remove":
+                    del shoppingDict[item]
+                    yourCart()
+                if editOpt.lower() == "change":
+                        editQty = input(f"Update the quantity that you want for this item.\n")
+                        shoppingDict[item]['quantity'] = int(editQty)
+                        right_qty = int(editQty)
+                        shoppingDict.update({"subtotal":itemAvailableDict[verUser.title()]*right_qty})
+                        yourCart()
 
 print("*" * 20)
 # print(itemAvailableDict)
