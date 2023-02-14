@@ -210,12 +210,20 @@ def browseItems(usrChoice):
         os.system('cls')
         def productQuantity():
             productAisle(usrChoice)
+            def inputError():
+                    os.system('cls')
+                    productAisle(usrChoice)
+                    print(f"\n{reset}{italic}{red}Unable to add unavailable item.{reset}")
             askUser()
-            item_qty = input("\n \bEnter Quantity \n\n>>>  ")
+            item_qty = input(f"\n \bEnter Quantity:{bold}{white} ")
             
             if str(item_qty).title() == "Q":
                 os.system('cls')
-                browseItems(main_menu(usrChoice))  
+                browseItems(main_menu(usrChoice))
+            
+            elif (str(item_qty).isalpha()) or (str(item_qty).isalnum()) or (str(item_qty).isspace()):
+                inputError()
+                productQuantity() 
             elif int(item_qty) > 0:
                 right_qty = int(item_qty)
                 shoppingDict.update({item_added:{"quantity":right_qty,"subtotal":itemAvailableDict[item_added.title()]*right_qty}})
@@ -245,24 +253,22 @@ def browseItems(usrChoice):
                         print('Please input a correct feed on the program.')
                         continue
             elif int(item_qty) <= 0:
-                print("Unable to read less than 0 quantity for the said item.")
+                print("Unable to read 0 or less than quantity for the said item.")
                 productQuantity() 
                 
             else:
-                os.system('cls')
-                productAisle(usrChoice)
-                print(f"\n{reset}{italic}{red}Unable to add unavailable item.{reset}")
+                inputError()
                 productQuantity()    
         productQuantity()
         
+    elif item_added.title() == "Q":
+        os.system('cls')
+        browseItems(main_menu(usrChoice))
+         
     elif item_added.title() not in itemAvailableDict:
         productAisle(usrChoice)
         print(f"\n{reset}{italic}{red}Item not found from the chosen category.{reset}")
         browseItems(usrChoice)
-            
-    elif item_added.title() == "Q":
-        os.system('cls')
-        browseItems(main_menu(usrChoice)) 
                
     else:
         os.system('cls')
