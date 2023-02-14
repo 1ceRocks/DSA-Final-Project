@@ -144,5 +144,14 @@ entry_8.grid(row = 8, column = 1)
 entry_9.grid(row = 9, column = 1)
 entry_10.grid(row = 10, column = 1)
 
+#? buttons
+
+btn_reset = Button(f1, bd = 5, fg = "black", bg = "lightblue", font = ("arial", 16, 'bold'), width = 10, text = "Reset", command = Reset)
+btn_reset.place(x = 0, y = -50)
+btn_reset.grid(row = 13, column = 0)
+
+btn_total = Button(f1, bd = 5, fg = "black", bg = "lightblue", font = ("arial", 16, 'bold'), width = 10, text = "Total", command = Total)
+btn_total.grid(row = 13, column = 1)
+
 # pyCanvas.pack()
 root.mainloop()
