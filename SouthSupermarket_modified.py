@@ -118,28 +118,35 @@ def main_menu(usrChoice):
     return usrChoice  
    
 def productAisle(usrChoice):
+    os.system('cls')
+    gap = ' '*3
+    heading = f"{'Product':40s}{gap}{'Quantity':>6s}"
+    print(heading)
     if usrChoice == 1:   
         def promoSec():
             for item in promosAvail:
                 item_name = item.split()[0]
-                item_price = item.split()[1] 
-                print(f"{reset}{item_name}: {bold}{green}PHP {item_price}{reset}")
+                item_price = item.split()[1]
+                rec = f"{item_name:40s}{gap}PHP {item_price:^6s}" 
+                print(rec)
         promoSec()
         return usrChoice
     elif usrChoice == 2:
         def fMSSec():    
             for item in fMSAvail:
                 item_name = item.split()[0]
-                item_price = item.split()[1] 
-                print(f"{reset}{item_name}: {bold}{green}PHP {item_price}{reset}")
+                item_price = item.split()[1]
+                rec = f"{item_name:40s}{gap}PHP {item_price:^6s}" 
+                print(rec)
         fMSSec()
         return usrChoice
     elif usrChoice == 3:
         def fPRSec():    
             for item in fPRAvail:
                 item_name = item.split()[0]
-                item_price = item.split()[1] 
-                print(f"{reset}{item_name}: {bold}{green}PHP {item_price}{reset}")
+                item_price = item.split()[1]
+                rec = f"{item_name:40s}{gap}PHP {item_price:^6s}" 
+                print(rec)
         fPRSec()
         return usrChoice
 
