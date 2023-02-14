@@ -55,6 +55,18 @@ def Total():
     
     try: a10 = int(promo10.get()) 
     except: a10 = 0
+    
+    #? define cost of each item per quantity
+    c1 = 13.50 * a1
+    c2 = 14.50 * a2
+    c3 = 15.00 * a3
+    c4 = 16.00 * a4
+    c5 = 17.50 * a5
+    c6 = 17.75 * a6
+    c7 = 18.50 * a7
+    c8 = 19.50 * a8
+    c9 = 20.50 * a9
+    c10 = 21.00 * a10
 
 Label(text = "VILLARIZA South Supermarket", bg = "black", fg = "white", font = ("Verdana", 33), width = "300", height = "2").pack()
 
