@@ -90,5 +90,16 @@ entry_8 = Entry(f1, font = ("aria", 20, 'bold'), textvariable = promo8, bd = 2, 
 entry_9 = Entry(f1, font = ("aria", 20, 'bold'), textvariable = promo9, bd = 2, width = 8, bg = "cyan")
 entry_10 = Entry(f1, font = ("aria", 20, 'bold'), textvariable = promo10, bd = 2, width = 8, bg = "cyan")
 
+entry_1.grid(row = 1, column = 1)
+entry_2.grid(row = 2, column = 1)
+entry_3.grid(row = 3, column = 1)
+entry_4.grid(row = 4, column = 1)
+entry_5.grid(row = 5, column = 1)
+entry_6.grid(row = 6, column = 1)
+entry_7.grid(row = 7, column = 1)
+entry_8.grid(row = 8, column = 1)
+entry_9.grid(row = 9, column = 1)
+entry_10.grid(row = 10, column = 1)
+
 # pyCanvas.pack()
 root.mainloop()
