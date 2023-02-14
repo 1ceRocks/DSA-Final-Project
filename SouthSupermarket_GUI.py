@@ -13,6 +13,18 @@ root.resizable(False, False)
 # background_label = Label(root, image = imageFile, anchor="center")
 # background_label.place(x=0, y=0, relwidth = 1, relheight = 1)
 
+def Reset():
+    entry_1.delete(0, END)
+    entry_2.delete(0, END)
+    entry_3.delete(0, END)
+    entry_4.delete(0, END)
+    entry_5.delete(0, END)
+    entry_6.delete(0, END)
+    entry_7.delete(0, END)
+    entry_8.delete(0, END)
+    entry_9.delete(0, END)
+    entry_10.delete(0, END)
+
 Label(text = "VILLARIZA South Supermarket", bg = "black", fg = "white", font = ("Verdana", 33), width = "300", height = "2").pack()
 
 #? MENU CARD
