@@ -350,7 +350,8 @@ def browseItems(usrChoice):
                                 os.system('cls')
                                 productAisle(usrChoice)
                                 consumerCart()
-                                browseItems(usrChoice)  
+                                browseItems(usrChoice) 
+                                usrRepeat = False 
                                 
                             else:    
                                 os.system('cls')
