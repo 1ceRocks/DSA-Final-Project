@@ -70,6 +70,8 @@ def Total():
     
     lbl_total = Label(f2, font = ('Verdana', 18, 'bold'), text = "Estimated Total", width = 26, fg = "lightyellow", bg = "black")
     lbl_total.place(x = 0, y = 130)
+    entry_total = Entry(f2, font = ('Verdana', 20, 'bold'), textvariable = Total_bill, bd = 6, width = 16, bg = "lightgreen")
+    entry_total.place(x = 70, y = 200)
     
     totalcost = c1 + c2 + c3 + c4 + c5 + c6 + c7 +  c8 + c9 + c10
     string_bill = "PHP", str('%.2f' % totalcost)
