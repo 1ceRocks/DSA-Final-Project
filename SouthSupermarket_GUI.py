@@ -78,5 +78,17 @@ lbl_promo8.grid(row = 8, column = 0)
 lbl_promo9.grid(row = 9, column = 0)
 lbl_promo10.grid(row = 10, column = 0)
 
+#? Entry
+entry_1 = Entry(f1, font = ("aria", 20, 'bold'), textvariable = promo1, bd = 2, width = 8, bg = "cyan")
+entry_2 = Entry(f1, font = ("aria", 20, 'bold'), textvariable = promo2, bd = 2, width = 8, bg = "cyan")
+entry_3 = Entry(f1, font = ("aria", 20, 'bold'), textvariable = promo3, bd = 2, width = 8, bg = "cyan")
+entry_4 = Entry(f1, font = ("aria", 20, 'bold'), textvariable = promo4, bd = 2, width = 8, bg = "cyan")
+entry_5 = Entry(f1, font = ("aria", 20, 'bold'), textvariable = promo5, bd = 2, width = 8, bg = "cyan")
+entry_6 = Entry(f1, font = ("aria", 20, 'bold'), textvariable = promo6, bd = 2, width = 8, bg = "cyan")
+entry_7 = Entry(f1, font = ("aria", 20, 'bold'), textvariable = promo7, bd = 2, width = 8, bg = "cyan")
+entry_8 = Entry(f1, font = ("aria", 20, 'bold'), textvariable = promo8, bd = 2, width = 8, bg = "cyan")
+entry_9 = Entry(f1, font = ("aria", 20, 'bold'), textvariable = promo9, bd = 2, width = 8, bg = "cyan")
+entry_10 = Entry(f1, font = ("aria", 20, 'bold'), textvariable = promo10, bd = 2, width = 8, bg = "cyan")
+
 # pyCanvas.pack()
 root.mainloop()
