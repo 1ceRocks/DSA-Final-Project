@@ -147,7 +147,7 @@ def main_menu(usrChoice):
     
     while True:
         try:
-            usrChoice = int(input(f"\n{reset}Select the following {bold}{white}{underlined}category{reset} you want to browse by typing the indicated number {bold}{blue}(1-7){reset}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} "))
+            usrChoice = int(input(f"\n{reset}Select the following {bold}{white}{underlined}category{reset} you want to browse by typing the indicated number {bold}{blue}(1-8){reset}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} "))
             if usrChoice > 8:
                 os.system('cls')
                 main_menu(usrChoice)
