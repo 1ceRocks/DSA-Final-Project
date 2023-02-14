@@ -25,6 +25,7 @@ def welcomeMsg():
     time.sleep(2)
 welcomeMsg()
 
+
 promos = open("grocerySection/promos.txt")
 freshMeatSeafoods = open("grocerySection/freshMeatSeafoods.txt")
 freshProduce = open("grocerySection/freshProduce.txt")
@@ -120,15 +121,17 @@ def main_menu(usrChoice):
 def productAisle(usrChoice):
     os.system('cls')
     gap = ' '*3
-    heading = f"{'Product':40s}{gap}{'Quantity':>6s}"
+    print("="*53)
+    heading = f"{reset}{bold}{blue}{'PRODUCT':40s}{gap}{green}{'QUANTITY':>6s}{reset}\n"
     print(heading)
     if usrChoice == 1:   
         def promoSec():
             for item in promosAvail:
                 item_name = item.split()[0]
                 item_price = item.split()[1]
-                rec = f"{item_name:40s}{gap}PHP {item_price:^6s}" 
+                rec = f"{reset}{blue}{item_name:40s}{gap}{green}PHP {item_price:^6s}{reset}"
                 print(rec)
+            print("-"*53)
         promoSec()
         return usrChoice
     elif usrChoice == 2:
@@ -136,8 +139,9 @@ def productAisle(usrChoice):
             for item in fMSAvail:
                 item_name = item.split()[0]
                 item_price = item.split()[1]
-                rec = f"{item_name:40s}{gap}PHP {item_price:^6s}" 
+                rec = f"{reset}{blue}{item_name:40s}{gap}{green}PHP {item_price:^6s}{reset}" 
                 print(rec)
+            print("-"*53)
         fMSSec()
         return usrChoice
     elif usrChoice == 3:
@@ -145,8 +149,9 @@ def productAisle(usrChoice):
             for item in fPRAvail:
                 item_name = item.split()[0]
                 item_price = item.split()[1]
-                rec = f"{item_name:40s}{gap}PHP {item_price:^6s}" 
+                rec = f"{reset}{blue}{item_name:40s}{gap}{green}PHP {item_price:^6s}{reset}" 
                 print(rec)
+            print("-"*53)
         fPRSec()
         return usrChoice
 
@@ -214,10 +219,10 @@ def browseItems(usrChoice):
                 def consumerCart():
                     os.system('cls')
                     productAisle(usrChoice)
-                    progIndicator = "{}".format("%-40s %-40s %s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
+                    progIndicator = "{}".format("%-40s %-40s %-40s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
                     print(f"\n \b{bold}{yellow}Your Cart{reset}\n\n \b{progIndicator}")
                     for key in shoppingDict:
-                        print("%-40s %-40s %s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}{reset}"))
+                        print("%-40s %-40s %-40s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}{reset}"))
                 consumerCart()
                 while True:
                     verUser = input(f"\n \bDo you wish to add more items? (yes / no) \n\n{bold}>>> ")
@@ -241,7 +246,9 @@ def browseItems(usrChoice):
                 productQuantity() 
                 
             else:
-                print("Unable to add unavailable item.")
+                os.system('cls')
+                productAisle(usrChoice)
+                print(f"\n{reset}{italic}{red}Unable to add unavailable item.{reset}")
                 productQuantity()    
         productQuantity()
             
@@ -252,7 +259,7 @@ def browseItems(usrChoice):
     else:
         os.system('cls')
         productAisle(usrChoice)
-        print("Unable to add unavailable item.")
+        print(f"\n{reset}{italic}{red}Unable to add unavailable item.{reset}")
         browseItems(usrChoice)
                   
 usrChoice = 0    
