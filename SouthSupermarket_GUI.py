@@ -68,6 +68,9 @@ def Total():
     c9 = 20.50 * a9
     c10 = 21.00 * a10
     
+    lbl_total = Label(f2, font = ('Verdana', 18, 'bold'), text = "Estimated Total", width = 26, fg = "lightyellow", bg = "black")
+    lbl_total.place(x = 0, y = 130)
+    
     totalcost = c1 + c2 + c3 + c4 + c5 + c6 + c7 +  c8 + c9 + c10
     string_bill = "PHP", str('%.2f' % totalcost)
     Total_bill.set(string_bill)
