@@ -148,7 +148,7 @@ print("*" * 20)
 
 def sumItems():
     os.system('cls')
-    print(f"{bold}{red}{bgWhite}TRANSACTION MANAGEMENT{reset}")
+    print(f"{reset}{bold}{red}{bgWhite}TRANSACTION MANAGEMENT{reset}")
     gap = ' '*3
     heading = f"{'Product':20s}{gap}{'Quantity':6s}{gap}{'Subtotal (PHP)'}"
     print("="*53)
@@ -195,16 +195,16 @@ def browseItems(usrChoice):
         def consumerCart():
             os.system('cls')
             productAisle(usrChoice)
-            progIndicator = "{}".format("%-35s %-35s %s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
+            progIndicator = "{}".format("%-40s %-40s %s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
             print(f"\n \b{bold}{yellow}Your Cart{reset}\n\n \b{progIndicator}")
             for key in shoppingDict:
-                print("%-35s %-35s %s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}"))
+                print("%-40s %-40s %s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}{reset}"))
         consumerCart()
         while True:
-            verUser = input("\n \bDo you wish to add more items? (yes / no) \n>>> ")
-            if verUser.lower() == "no":
+            verUser = input("\n \bDo you wish to add more items? (yes / no) \n\n{white}>>> ")
+            if verUser.lower() == "no" or "n" :
                 sumItems()
-                break
+                exit()
 
             elif verUser.lower() == "yes":
                 os.system('cls')
@@ -219,6 +219,7 @@ def browseItems(usrChoice):
                 continue
             
     elif item_added.title() == ("Q" or "Quit"):
+        os.system('cls')
         browseItems(main_menu(usrChoice)) 
                
     else:
