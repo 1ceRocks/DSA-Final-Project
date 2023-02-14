@@ -121,37 +121,40 @@ def main_menu(usrChoice):
 def productAisle(usrChoice):
     os.system('cls')
     gap = ' '*3
-    print("="*53)
-    heading = f"{reset}{bold}{blue}{'PRODUCT':40s}{gap}{green}{'QUANTITY':>6s}{reset}\n"
+    print(f"{bold}{white}={reset}"*53)
+    heading = f"{reset}{bold}{blue}{'PRODUCT':40s}{gap}{green}{'QUANTITY':>6s}{reset}"
     print(heading)
     if usrChoice == 1:   
         def promoSec():
+            print(f"{reset}{bold}{yellow:20s}PROMOS PRODUCT CATEGORY{reset}\n")
             for item in promosAvail:
                 item_name = item.split()[0]
                 item_price = item.split()[1]
                 rec = f"{reset}{blue}{item_name:40s}{gap}{green}PHP {item_price:^6s}{reset}"
                 print(rec)
-            print("-"*53)
+            print(f"{bold}{white}-{reset}"*53)
         promoSec()
         return usrChoice
     elif usrChoice == 2:
         def fMSSec():    
+            print(f"{reset}{bold}{yellow:15s}FRESH MEAT & SEAFOODS CATEGORY{reset}\n")
             for item in fMSAvail:
                 item_name = item.split()[0]
                 item_price = item.split()[1]
                 rec = f"{reset}{blue}{item_name:40s}{gap}{green}PHP {item_price:^6s}{reset}" 
                 print(rec)
-            print("-"*53)
+            print(f"{bold}{white}-{reset}"*53)
         fMSSec()
         return usrChoice
     elif usrChoice == 3:
         def fPRSec():    
+            print(f"{reset}{bold}{yellow:20s}FRESH PRODUCE CATEGORY{reset}\n")
             for item in fPRAvail:
                 item_name = item.split()[0]
                 item_price = item.split()[1]
                 rec = f"{reset}{blue}{item_name:40s}{gap}{green}PHP {item_price:^6s}{reset}" 
                 print(rec)
-            print("-"*53)
+            print(f"{bold}{white}-{reset}"*53)
         fPRSec()
         return usrChoice
 
@@ -197,11 +200,11 @@ def sumItems():
        
         
 def browseItems(usrChoice):
-    progExit = "{}".format(f"Type and enter the Q key to exit the Product Category Aisle anytime.")
+    progExit = "{}".format(f"{reset}Type and enter the {bold}{white}Q{reset} key to exit the {italic}{yellow}Product Category Aisle{reset} anytime.")
     def askUser():
         print("\n" + progExit)
     askUser()
-    item_added = input("\n \bAdd an item: ")
+    item_added = input(f"{reset}\n \bAdd an item:{bold}{white} ")
     
     if item_added.title() in itemAvailableDict:
         os.system('cls')
@@ -225,7 +228,7 @@ def browseItems(usrChoice):
                         print("%-40s %-40s %-40s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}{reset}"))
                 consumerCart()
                 while True:
-                    verUser = input(f"\n \bDo you wish to add more items? (yes / no) \n\n{bold}>>> ")
+                    verUser = input(f"\n \bDo you wish to add more items? ({bold}{white}yes {reset}/ {bold}{white}no{reset}) \n\n{bold}>>> ")
                     if verUser.lower() == "no":
                         sumItems()
                         exit()
@@ -251,15 +254,20 @@ def browseItems(usrChoice):
                 print(f"\n{reset}{italic}{red}Unable to add unavailable item.{reset}")
                 productQuantity()    
         productQuantity()
+        
+    elif item_added.title() not in itemAvailableDict:
+        productAisle(usrChoice)
+        print(f"\n{reset}{italic}{red}Item not found from the chosen category.{reset}")
+        browseItems(usrChoice)
             
-    elif item_added.title() == ("Q" or "Quit"):
+    elif item_added.title() == "Q":
         os.system('cls')
         browseItems(main_menu(usrChoice)) 
                
     else:
         os.system('cls')
         productAisle(usrChoice)
-        print(f"\n{reset}{italic}{red}Unable to add unavailable item.{reset}")
+        print(f"\n{reset}{italic}{red}Input not recognized. Please try again.{reset}")
         browseItems(usrChoice)
                   
 usrChoice = 0    
