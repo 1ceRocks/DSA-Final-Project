@@ -10,21 +10,6 @@ shoppingDict = {}
 # shoppingDict={"eggs":{"quantity":2,"subtotal":itemAvailableDict["egg"]*2}}
 #welcome User
 
-def welcomeMsg():
-    #? userName is the name of the user itself. This is used to identify the user and the user can access the information.
-    os.system('cls')
-    userName = input("Please enter your name: ")
-
-    #? variable for welcoming the user intended for greetings.
-    os.system('cls')
-    welcomeMessage = f" \bWelcome to VILLARIZA South Supermarket, \n{userName}."
-    lenWCMsg = len(welcomeMessage)
-    print("*" * lenWCMsg + "\n")
-    print(welcomeMessage)
-    print("\n" + "*" * lenWCMsg)
-    time.sleep(2)
-welcomeMsg()
-
 def openProduct1(Avail):
     promos = open("grocerySection/promos.txt")
     Avail = promos.readlines()
@@ -125,6 +110,30 @@ black, red, green, yellow, blue, magenta, cyan, white = foregroundColors(1, 2, 3
 
 bgBlack, bgRed, bgGreen, bgYellow, bgBlue, bgMagenta, bgCyan, bgWhite = backgroundColors(1, 2, 3, 4, 5, 6, 7, 8)
 
+def welcomeMsg():
+    #? userName is the name of the user itself. This is used to identify the user and the user can access the information.
+    os.system('cls')
+    userName = input(f"{yellow}{bold} CUSTOMER NAME {reset}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} ")
+
+    #? variable for welcoming the user intended for greetings.
+    os.system('cls')
+    welcomeMessage = f"{reset} \bWelcome to {bgBlack}{bold} VILLARIZA South Supermarket {reset}\n\n{bold}{cyan}{userName.upper()}{reset}"
+    lenWCMsg = len(welcomeMessage)
+    print(f"{reset}{bold}{blue}="*lenWCMsg)
+    print(f"\n{welcomeMessage}\n")
+    print(f"{reset}{bold}{yellow}-"*lenWCMsg)
+    time.sleep(3)
+welcomeMsg()
+
+def yourCart():
+    os.system('cls')
+    progDesign = f"{bold}{white}={reset}"*80
+    progIndicator = "{}".format("%-40s %-40s %s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
+    print(f"\n \b{bold}{yellow}Your Cart{reset}\n{progDesign}\n \b{progIndicator}")
+    for key in shoppingDict:
+        print("%-39s %-40s %s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']} pcs.", f"{red}PHP {shoppingDict[key]['subtotal']}{reset}"))
+    print(f"{bold}{white}-{reset}"*80)
+
 #? for loop through the list in appending the element to a dictionary (itemAvailableDict)
 def main_menu(usrChoice):
     progTitle = "{}".format(f"\n{reset}{bgYellow}{bold}{black} Available Product Category {reset}\n")
@@ -150,6 +159,29 @@ def main_menu(usrChoice):
             productAisle(usrChoice)
             break
     return usrChoice  
+   
+def sumItems():
+    os.system('cls')
+    print(f"{reset}{bold}{red}{bgWhite}TRANSACTION MANAGEMENT{reset}\n")
+    heading = f"{'Product':31s}{'Quantity':31s}{'Subtotal'}{reset}"
+    print("="*len(heading))
+    print(f"{reset}{bold}{heading}{reset}")
+    print("-"*len(heading))
+    shopping_Sum = 0
+    for key in shoppingDict:
+        print("%-30s %-30s %s" %(key, shoppingDict[key]['quantity'], shoppingDict[key]['subtotal']))
+        shopping_Sum = shoppingDict[key]['subtotal'] + shopping_Sum
+    print(f"{reset}\n \b{bold}{red}TOTAL{white}: {green}PHP {shopping_Sum:.2f}{reset}\n")
+    progExit = "{}".format(f"{reset}Type and enter the {bold}{white}Q{reset} key to exit viewing {italic}{yellow}your cart{reset} anytime.")
+    varBreak = True
+    while varBreak:
+        verUser = input(f"\n{progExit}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} ")    
+        if verUser.title() == "Q":
+            browseItems(main_menu(usrChoice))
+            varBreak = False
+        else:
+            print(f"\n{reset}{italic}{red}Input not recognized. Please try again.{reset}")
+            sumItems()     
    
 def productAisle(usrChoice):
     os.system('cls')
@@ -214,14 +246,6 @@ def productAisle(usrChoice):
         return usrChoice
     elif usrChoice == 6:
         def usr6():
-            def yourCart():
-                os.system('cls')
-                progDesign = f"{bold}{white}={reset}"*80
-                progIndicator = "{}".format("%-40s %-40s %-40s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
-                print(f"\n \b{bold}{yellow}Your Cart{reset}\n{progDesign}\n \b{progIndicator}")
-                for key in shoppingDict:
-                    print("%-40s %-40s %-40s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}{reset}"))
-                print(f"{bold}{white}-{reset}"*80)
             yourCart()
             progExit = "{}".format(f"{reset}Type and enter the {bold}{white}Q{reset} key to exit viewing {italic}{yellow}your cart{reset} anytime.")
             varBreak = True
@@ -235,71 +259,42 @@ def productAisle(usrChoice):
                     usr6()
         usr6()
     elif usrChoice == 7:
-        def yourCart():
-                os.system('cls')
-                progDesign = f"{bold}{white}={reset}"*80
-                progIndicator = "{}".format("%-40s %-40s %-40s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
-                print(f"\n \b{bold}{yellow}Your Cart{reset}\n{progDesign}\n \b{progIndicator}")
-                for key in shoppingDict:
-                    print("%-40s %-40s %-40s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}{reset}"))
-                print(f"{bold}{white}-{reset}"*80)
-        yourCart()
-        progEdit = "{}".format(f"{reset}Type and enter the {bold}{blue}item{reset} that you want to {bold}{yellow}edit{reset} on {italic}{yellow}your cart.{reset}")
-        verUser = input(f"\n{progEdit}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} ")
-        for item in shoppingDict:
-            if verUser == item:
-                editOpt = input(f"Do you want to remove the item {verUser} or change its quantity? (remove / change)\n")
-                if editOpt.lower() == "remove":
-                    del shoppingDict[item]
-                    yourCart()
-                if editOpt.lower() == "change":
-                        editQty = input(f"Update the quantity that you want for this item.\n")
-                        right_qty = int(editQty)
-                        shoppingDict.update({verUser:{"quantity":right_qty,"subtotal":itemAvailableDict[verUser.title()]*right_qty}})
-                        # shoppingDict[item]['quantity'] = float(editQty)
-                        # shoppingDict.update({"subtotal":itemAvailableDict[verUser.title()]['subtotal']*right_qty})
+        def usr7():
+            os.system('cls')
+            yourCart()
+            progEdit = "{}".format(f"{reset}Type and enter the {bold}{blue}item{reset} that you want to {bold}{yellow}edit{reset}.{reset} Type and enter the {bold}{white}Q{reset} key once you've done editing {italic}{yellow}your cart{reset}.")
+            verUser = input(f"\n{progEdit}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} ")
+            varBreak = True
+            while varBreak:
+                if verUser.title() == "Q":
+                    browseItems(main_menu(usrChoice))
+                    varBreak = False
+                for item in shoppingDict:
+                    if verUser == item:
+                        os.system('cls')
                         yourCart()
-
-print("*" * 20)
-# print(itemAvailableDict)
-#prompt user to add items
-# shopping_Cart = True
-
-def sumItems():
-    os.system('cls')
-    print(f"{reset}{bold}{red}{bgWhite}TRANSACTION MANAGEMENT{reset}")
-    gap = ' '*3
-    heading = f"{'Product':20s}{gap}{'Quantity':6s}{gap}{'Subtotal (PHP)'}"
-    print("="*53)
-    print(heading)
-    print("-"*53)
-    print("%-30s %-30s %s" %("Product", "Quantity", "Subtotal"))
-    shopping_Sum = 0
-    for key in shoppingDict:
-        print("%-30s %-30s %s" %(key, shoppingDict[key]['quantity'], shoppingDict[key]['subtotal']))
-        shopping_Sum = shoppingDict[key]['subtotal'] + shopping_Sum
-    print(f" \bTotal: {shopping_Sum}")
-    exit()
-    
-# def purchaseItems(usrChoice):
-#     proceedShopping = input(" \bDo you wish to proceed? (yes / no) \n>>> ")
-#     try:
-#         if proceedShopping.lower() == "no":
-#             sumItems()
-
-#         elif proceedShopping.lower() == "yes":
-#             os.system('cls')
-#             productAisle(usrChoice)     
-#             browseItems(usrChoice)  
-            
-#         else:    
-#             print('Please input a correct feed into our program.')
-#             purchaseItems(usrChoice)
-                
-#     except ValueError:
-#         print('Please input a correct feed into our program.')       
-       
-        
+                        editOpt = input(f"\n{reset}Do you want to {bgRed}{bold} remove {reset} the item {bold}{blue}{verUser}{reset} or {bgYellow}{bold}{black} change {reset} its {bold}{green}Quantity{reset}? ({bold}remove{reset} / {bold}change{reset})\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} ")
+                        if editOpt.lower() == "remove":
+                            del shoppingDict[item]
+                            usr7()
+                            break
+                        elif editOpt.lower() == "change":
+                            os.system('cls')
+                            yourCart()
+                            editQty = input(f"\n{reset}Update the {bold}{green}Quantity{reset} that you want for {bold}{blue}{verUser}{reset}.\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} ")
+                            right_qty = int(editQty)
+                            shoppingDict.update({verUser:{"quantity":right_qty,"subtotal":itemAvailableDict[verUser.title()]*right_qty}})
+                            # shoppingDict[item]['quantity'] = float(editQty)
+                            # shoppingDict.update({"subtotal":itemAvailableDict[verUser.title()]['subtotal']*right_qty})
+                            usr7()
+                            break
+                else:
+                    print(f"\n{reset}{italic}{red}Input not recognized. Please try again.{reset}")
+                    usr7()
+        usr7()
+    elif usrChoice == 8:
+        sumItems()
+             
 def browseItems(usrChoice):
     progExit = "{}".format(f"{reset}Type and enter the {bold}{white}Q{reset} key to exit the {italic}{yellow}Product Category{reset} anytime.")
     def askUser():
@@ -339,15 +334,15 @@ def browseItems(usrChoice):
                         def consumerCart():
                             os.system('cls')
                             productAisle(usrChoice)
-                            progIndicator = "{}".format("%-40s %-40s %-40s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
+                            progIndicator = "{}".format("%-40s %-40s %s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
                             print(f"\n \b{bold}{yellow}Your Cart{reset}\n\n \b{progIndicator}")
                             for key in shoppingDict:
-                                print("%-40s %-40s %-40s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}{reset}"))
+                                print("%-39s %-40s %s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']} pcs.", f"{red}PHP {shoppingDict[key]['subtotal']}{reset}"))
                         consumerCart()
                         while usrRepeat:
-                            verUser = input(f"\n \bDo you wish to {bold}{underlined}{green}add{reset} more {bold}{blue}items?{reset} ({bold}{white}yes {reset}/ {bold}{white}no{reset}) \n\n{bold}>>> ")
+                            verUser = input(f"\n \bDo you wish to {bold}{underlined}{green}add{reset} more {bold}{blue}items?{reset} ({bold}{white}yes {reset}/ {bold}{white}no{reset})\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} ")
                             if verUser.lower() == "no":
-                                main_menu(usrChoice)
+                                browseItems(main_menu(usrChoice))
                                 usrRepeat = False
 
                             elif verUser.lower() == "yes":
