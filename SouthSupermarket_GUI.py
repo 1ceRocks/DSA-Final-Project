@@ -67,5 +67,16 @@ lbl_promo8 = Label(f1, font = ("Verdana", 15, "bold"), text = "Tang Powdered Jui
 lbl_promo9 = Label(f1, font = ("Verdana", 15, "bold"), text = "Dutch Mill Yoghurt Drink", width = 28, fg = "blue4")
 lbl_promo10 = Label(f1, font = ("Verdana", 15, "bold"), text = "Lucky Me Batchoy", width = 28, fg = "blue4")
 
+lbl_promo1.grid(row = 1, column = 0)
+lbl_promo2.grid(row = 2, column = 0)
+lbl_promo3.grid(row = 3, column = 0)
+lbl_promo4.grid(row = 4, column = 0)
+lbl_promo5.grid(row = 5, column = 0)
+lbl_promo6.grid(row = 6, column = 0)
+lbl_promo7.grid(row = 7, column = 0)
+lbl_promo8.grid(row = 8, column = 0)
+lbl_promo9.grid(row = 9, column = 0)
+lbl_promo10.grid(row = 10, column = 0)
+
 # pyCanvas.pack()
 root.mainloop()
