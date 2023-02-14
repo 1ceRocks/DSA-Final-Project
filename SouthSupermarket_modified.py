@@ -234,6 +234,27 @@ def productAisle(usrChoice):
                     print(f"\n{reset}{italic}{red}Input not recognized. Please try again.{reset}")
                     usr6()
         usr6()
+    elif usrChoice == 7:
+        def yourCart():
+                os.system('cls')
+                progDesign = f"{bold}{white}={reset}"*80
+                progIndicator = "{}".format("%-40s %-40s %-40s" %(f"{bold}{blue}Product", f"{green}Quantity", f"{red}Subtotal{reset}"))
+                print(f"\n \b{bold}{yellow}Your Cart{reset}\n{progDesign}\n \b{progIndicator}")
+                for key in shoppingDict:
+                    print("%-40s %-40s %-40s" %(f"{blue}\b{key}", f"{green}\b{shoppingDict[key]['quantity']}", f"{red}{shoppingDict[key]['subtotal']}{reset}"))
+                print(f"{bold}{white}-{reset}"*80)
+        yourCart()
+        progEdit = "{}".format(f"{reset}Type and enter the {bold}{blue}item{reset} that you want to {bold}{yellow}edit{reset} on {italic}{yellow}your cart.{reset}")
+        verUser = input(f"\n{progEdit}\n\n \b{blue}>{yellow}>{blue}>{bold}{blue} ")
+        for item in shoppingDict:
+            if verUser == item:
+                print(f"Do you want to remove the item {verUser} or change its quantity? (remove / change)")
+                print(item)
+                
+        # for key in shoppingDict:
+        #     print("%-30s %-30s %s" %(key, shoppingDict[key]['quantity'], shoppingDict[key]['subtotal']))
+        #     shopping_Sum = shoppingDict[key]['subtotal'] + shopping_Sum
+        # print(f" \bTotal: {shopping_Sum}")
 
 print("*" * 20)
 # print(itemAvailableDict)
