@@ -11,7 +11,7 @@ print(welcomeMessage)
 print("*"*lenWCMsg)
 
 #read data from text file 
-my_file=open("available_grocery_items.txt")
+my_file=open("grocerySection/promos.txt")
 file_line=my_file.readline()
 itemsAvailable=my_file.readlines()
 # print(itemsAvailable)
