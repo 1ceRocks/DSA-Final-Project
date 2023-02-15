@@ -133,7 +133,7 @@ def goodbyeMsg(userName):
 
     #? variable for welcoming the user intended for greetings.
     os.system('cls')
-    welcomeMessage = f"{reset} \b{bold}{green}Thank you for your service,{reset} \n\n{bold}{yellow}CUSTOMER NAME: {cyan}{userName.upper()} {reset}!\n\n\n \b{bold}Please come back again anytime soon!{reset} \n\n{italic}Fritz Cedrick Villariza,\n{bold}{red}CEO{reset}{italic} of {bgBlack}{bold} VILLARIZA South Supermarket {reset}"
+    welcomeMessage = f"{reset} \b{bold}{green}Thank you for your service,{reset} \n\n{bold}{yellow}CUSTOMER NAME: {cyan}{userName.upper()} {reset}!\n\n\n \b{bold}Please come back again anytime soon!{reset} \n\n{italic}Fritz Cedrick Villariza,\n{bold}{red}Manager{reset}{italic} of {bgBlack}{bold} VILLARIZA South Supermarket {reset}"
     lenWCMsg = len(welcomeMessage)
     print(f"{reset}{bold}{blue}="*lenWCMsg)
     print(f"{welcomeMessage}")
